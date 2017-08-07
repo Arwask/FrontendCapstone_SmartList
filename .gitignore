@@ -5,4 +5,7 @@ node_modules/
 platforms/
 plugins/
 www/css/ionic.app.css
-www/css/ionic.app.min.css
+www/css/ionic.app.min.
+www/js/creds/api-creds.js
+www/js/creds/fb-creds.js
+

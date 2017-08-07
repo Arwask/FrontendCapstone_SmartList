@@ -1,10 +1,16 @@
 <ion-view title="Recipes" >
-<ion-card ng-repeat="recipe in recipes">
-  <img src={{recipe.image}} alt="{{recipe.title}}" class="full-image"/>
+<ion-content padding="true" class="has-header">
+<form>
+<input type="text" name="search" placeholder="search.." ng-keyPress="searchedRecipe($event)" ng-model="searchText"/>Search
+
+<!-- <ion-card ng-repeat="recipe in recipes">
+  <img src={{recipe.image}} alt="{{recipe.title}}" class="full-image recipeCard"/>
   <ion-card-content padding>
     <ion-card-title>
       {{recipe.title}}
       </ion-card-title>
   </ion-card-content>
-</ion-card>
+</ion-card> -->
+</form>
+</ion-content>
 </ion-view>

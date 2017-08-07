@@ -8,5 +8,6 @@ plugins/
 www/css/ionic.app.css
 www/css/ionic.app.min.css
 
-www/js/creds/api-creds.js
+www/js/creds/recipe-creds.js
 www/js/creds/fb-creds.js
+www/js/creds/grocery-creds.js

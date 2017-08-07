@@ -1,6 +1,6 @@
-smartApp.controller('RecipeViewCtrl', function($scope, $window, DataFactory) {
+smartApp.controller('RecipeViewCtrl', function($scope, $window, RecipeFactory) {
 
-    DataFactory.get10Recipes()
+    RecipeFactory.get10Recipes()
     .then( (recievedRecipes) => {
         console.log("recipes recieved:", recievedRecipes.data);
         console.log("recipes recieved:", recievedRecipes.data.recipes[0].title);
@@ -9,5 +9,18 @@ smartApp.controller('RecipeViewCtrl', function($scope, $window, DataFactory) {
     .catch( (err) => {
         console.log("Error",err );
     })
+
+    $scope.searchText = "";
+    console.log("$scope.search", $scope.search);
+
+    $scope.searchedRecipe = (event) => {
+        if(event.keyCode === 13)
+        {
+            console.log("$scope.search", $scope.searchText);
+            RecipeFactory.searchedRecipes($scope.searchText)
+        }
+        else
+            $scope.searchText += event.key
+    }
 
 });

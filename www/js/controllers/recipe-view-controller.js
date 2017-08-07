@@ -13,6 +13,7 @@ smartApp.controller('RecipeViewCtrl', function($scope, $window,$q, RecipeFactory
     $scope.searchText = "";
     console.log("$scope.search", $scope.search);
     let recipeIdArray = [];
+
     $scope.searchedRecipe = (event) => {
         if(event.keyCode === 13)
         {
@@ -27,7 +28,7 @@ smartApp.controller('RecipeViewCtrl', function($scope, $window,$q, RecipeFactory
                 RecipeFactory.getRecipeById(recipeIdArray)  
                 .then( (Recipedata) => {
                     console.log("data", Recipedata);
-                $scope.recipes = RecipeData.data;
+                $scope.recipes = Recipedata;
                 })
 
             })

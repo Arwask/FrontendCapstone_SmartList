@@ -23,6 +23,7 @@ smartApp.factory('RecipeFactory', function($q, $http, RecipeCreds) {
 }
     let searchedRecipes = (searchstring) => {
         return $q( (resolve, reject) => {
+            // working
             $http({
                 method:"GET",
                 url: ` https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/autocomplete?number=2&query=${searchstring}`,
@@ -42,6 +43,7 @@ smartApp.factory('RecipeFactory', function($q, $http, RecipeCreds) {
     let getRecipeById = (idArray) => {
         let recipePromises = [];
         return $q( (resolve, reject) => {
+            // working
             for(i=0;i<idArray.length;i++)
             {
                 console.log("idArray", idArray[i]);

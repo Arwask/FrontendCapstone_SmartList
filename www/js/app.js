@@ -48,7 +48,7 @@ smartApp.config(function($stateProvider, $urlRouterProvider) {
   })
   .state('mainOptions', {
     url: '/main-options',
-    controller: 'MainOptionsCtrl',
+    controller: 'MainOptionCtrl',
     templateUrl: '../templates/main-options.html'
   })
   .state('scan', {
@@ -67,8 +67,8 @@ smartApp.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: '../templates/shopping-list.html'
   })
   .state('singleRecipe', {
-    url: '/main-options',
-    controller: 'singleRecipeCtrl',
+    url: '/recipe/{recipeId}',
+    controller: 'SingleRecipeCtrl',
     templateUrl: '../templates/single-recipe.html'
   });
 

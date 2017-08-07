@@ -1,0 +1,22 @@
+<ion-view title="Recipe">
+  <ion-content padding="true" class="has-header">
+    <div class="button-bar">
+ <!--      <button class="button button-positive button-block" ng-click="addToRecipeBook()">save</button>
+      <button class="button button-positive button-block" ui-sref="selector">make list</button>
+      <button class="button button-positive button-block" ui-sref="recipesView">cancel</button> -->
+    </div>
+    <div class="list card">
+      <ion-item>
+      <button class="button" ng-click="addToRecipeBook()">save</button>
+      <button class="button" ui-sref="selector"><ion-icon name="list-box"></ion-icon></button>
+      <button class="button" ui-sref="recipesView">cancel</button>
+        
+        <h2>{{title}}</h2>
+      </ion-item>
+      <div style="margin: 0px; line-height: 250px; background-color: rgb(232, 235, 239); text-align: center;">
+        <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+      </div>
+      <div class="item item-body"></div>
+    </div>
+  </ion-content>
+</ion-view>

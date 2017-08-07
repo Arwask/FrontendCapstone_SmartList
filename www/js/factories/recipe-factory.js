@@ -25,7 +25,7 @@ smartApp.factory('RecipeFactory', function($q, $http, RecipeCreds) {
         return $q( (resolve, reject) => {
             $http({
                 method:"GET",
-                url: ` https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/autocomplete?number=1&query=${searchstring}`,
+                url: ` https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/autocomplete?number=2&query=${searchstring}`,
                 headers: {
                     "x-mashape-key": RecipeCreds.apiKey,
                     "cache-control": "no-cache"
@@ -34,8 +34,36 @@ smartApp.factory('RecipeFactory', function($q, $http, RecipeCreds) {
             .then( (searchedData) => {
                 console.log("searchedData",searchedData );
                 resolve(searchedData);
+
             })
         })
     }
-return { get10Recipes, searchedRecipes };
+
+    let getRecipeById = (idArray) => {
+        let recipePromises = [];
+        return $q( (resolve, reject) => {
+            for(i=0;i<idArray.length;i++)
+            {
+                console.log("idArray", idArray[i]);
+                $http({
+                method:"GET",
+                url: `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/${idArray[i]}/information?`,
+                headers: {
+                    "x-mashape-key": RecipeCreds.apiKey,
+                    "cache-control": "no-cache"
+                  }
+            })
+            .then( (actualData) => {
+                // console.log("searchedData",actualData );
+                // resolve(actualData.data);
+                recipePromises.push(actualData.data);
+                resolve(recipePromises);
+            })
+            .catch( (err) => {
+                console.log("err",err );
+            });
+        }
+        })
+    }
+return { get10Recipes, searchedRecipes, getRecipeById };
 });

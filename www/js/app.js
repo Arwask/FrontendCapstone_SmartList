@@ -21,7 +21,7 @@ smartApp.run(function($ionicPlatform) {
       StatusBar.styleDefault();
     }
   });
-})
+});
 
 smartApp.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -40,6 +40,36 @@ smartApp.config(function($stateProvider, $urlRouterProvider) {
     url: '/recipes/view',
     controller: 'RecipeViewCtrl',
     templateUrl: '../templates/recipe-list.html'
+  })
+  .state('recipeBook', {
+    url: '/recipes/book',
+    controller: 'RecipeBookCtrl',
+    templateUrl: '../templates/recipe-book.html'
+  })
+  .state('mainOptions', {
+    url: '/main-options',
+    controller: 'MainOptionsCtrl',
+    templateUrl: '../templates/main-options.html'
+  })
+  .state('scan', {
+    url: '/scanner',
+    controller: 'ScanController',
+    templateUrl: '../templates/scan.html'
+  })
+  .state('selector', {
+    url: '/selector-list',
+    controller: 'SelectorCtrl',
+    templateUrl: '../templates/selector-list.html'
+  })
+  .state('shoppingList', {
+    url: '/shopping-list',
+    controller: 'ShoppingListCtrl',
+    templateUrl: '../templates/shopping-list.html'
+  })
+  .state('singleRecipe', {
+    url: '/main-options',
+    controller: 'singleRecipeCtrl',
+    templateUrl: '../templates/single-recipe.html'
   });
 
   $urlRouterProvider.otherwise("/");

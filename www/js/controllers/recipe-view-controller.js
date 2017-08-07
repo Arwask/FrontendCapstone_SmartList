@@ -18,9 +18,17 @@ smartApp.controller('RecipeViewCtrl', function($scope, $window, RecipeFactory) {
         {
             console.log("$scope.search", $scope.searchText);
             RecipeFactory.searchedRecipes($scope.searchText)
+            .then( (searchedData) => {
+                console.log("searchedData", searchedData);
+                $scope.recipes = searchedData.data.recipes;
+            })
+            .catch( (err) => {
+                console.log("err",err );
+            });
+            $scope.searchText = "";
         }
         else
-            $scope.searchText += event.key
+            $scope.searchText += event.key;
     }
 
 });

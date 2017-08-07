@@ -25,7 +25,7 @@ smartApp.factory('RecipeFactory', function($q, $http, RecipeCreds) {
         return $q( (resolve, reject) => {
             $http({
                 method:"GET",
-                url: ` https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/autocomplete?number=10&query=${searchstring}`,
+                url: ` https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/autocomplete?number=1&query=${searchstring}`,
                 headers: {
                     "x-mashape-key": RecipeCreds.apiKey,
                     "cache-control": "no-cache"
@@ -33,6 +33,7 @@ smartApp.factory('RecipeFactory', function($q, $http, RecipeCreds) {
             })
             .then( (searchedData) => {
                 console.log("searchedData",searchedData );
+                resolve(searchedData);
             })
         })
     }

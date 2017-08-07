@@ -3,9 +3,9 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
+let smartApp = angular.module('smartApp', ['ionic']);
 
-.run(function($ionicPlatform) {
+smartApp.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -22,3 +22,26 @@ angular.module('starter', ['ionic'])
     }
   });
 })
+
+smartApp.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+  .state('index', {
+    url: '/',
+    // abstract: true,
+    templateUrl: '../templates/home.html',
+    controller: 'HomeCtrl'
+  })
+  .state('register', {
+    url: '/register',
+    templateUrl: '../templates/register.html',
+    controller: 'RegisterCtrl'
+  })
+  .state('recipesView', {
+    url: '/recipes/view',
+    controller: 'RecipeViewCtrl',
+    templateUrl: '../templates/recipe-list.html'
+  });
+
+  $urlRouterProvider.otherwise("/");
+
+  });

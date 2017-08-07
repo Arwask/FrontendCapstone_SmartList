@@ -1,5 +1,13 @@
 {
   "name": "capstone_smartlist",
-  "app_id": "",
-  "type": "ionic1"
+  "app_id": "448b004e",
+  "type": "ionic1",
+  "proxies": 
+    {
+      "path": "/api",
+      "proxyUrl": "http://cors.api.com/api"
+    },
+  "watchPatterns": [
+    "scss/**/*"
+  ]
 }

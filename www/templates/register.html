@@ -1,0 +1,23 @@
+<ion-view view-title="Register">
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>Register here</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="item item-image"><img src="../img/fruits_veggies.png"/></div>
+    <ul>
+      <li>
+        <input type="text" placeholder="Username" name="email" ng-model="registerInfo.email">
+      </li>
+      <li>
+        <input type="password" placeholder="Password" name="password" ng-model="registerInfo.password">
+      </li>
+      <li>
+        <button ng-click= "register()" class="ion-person-add button-big">Register</button>
+      </li>
+    </ul>
+</ion-content>
+</ion-view>

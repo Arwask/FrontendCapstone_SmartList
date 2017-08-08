@@ -48,6 +48,11 @@ smartApp.config(function($stateProvider, $urlRouterProvider) {
     controller: 'RecipeBookCtrl',
     templateUrl: '../templates/recipe-book.html'
   })
+  .state('favSingleRecipe', {
+    url: '/recipes/favorite/{recipeId}',
+    controller: 'SingleFavRecipeCtrl',
+    templateUrl: '../templates/single-fav-recipe.html'
+  })
   .state('mainOptions', {
     url: '/main-options',
     controller: 'MainOptionCtrl',

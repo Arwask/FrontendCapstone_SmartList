@@ -1,7 +1,7 @@
 <ion-view title="Favorite Recipes">
 <!-- TODO: add an add button to browse recipes directly from this page -->
     <ion-content>
-    <ion-card ng-repeat="recipe in recipes" ui-sref="singleRecipe({recipeId:{{recipe.id}}})">
+    <ion-card ng-repeat="recipe in recipes" ui-sref="favSingleRecipe({recipeId:{{recipe.id}}})">
     <div class="list card">
         <div style="margin: 0px; line-height: 0px; background-color: rgb(232, 235, 239); text-align: center;">
             <img src="{{recipe.image}}" style="width: 100%;">

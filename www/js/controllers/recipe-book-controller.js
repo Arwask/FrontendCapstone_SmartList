@@ -3,7 +3,7 @@ smartApp.controller('RecipeBookCtrl', function($scope, RecipeFactory, fbDataFact
     UserFactory.isAuthenticated()
     .then( (user) => {
         let currentUser = UserFactory.getUser();   
-        console.log("currentUser??",currentUser );
+        // console.log("currentUser??",currentUser );
         fbDataFactory.getUserRecipes(currentUser)
         .then( (userData) => {
             // console.log("userData here yet??", userData.data);

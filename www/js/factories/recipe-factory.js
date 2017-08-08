@@ -4,21 +4,21 @@ smartApp.factory('RecipeFactory', function($q, $http, RecipeCreds) {
     function get10Recipes() {
     return $q( (resolve, reject) => {
         // ----working API call-----
-        // $http({                          
-        //     method:"GET",
-        //     url: `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=false&number=5&tags=vegetarian%2Cdessert`,
-        //     headers: {
-        //         "x-mashape-key": RecipeCreds.apiKey,
-        //         "cache-control": "no-cache"
-        //       }
-        // }).
-        // then( (AllData) => {
-        //     console.log("data", AllData );
-        //     resolve(AllData);
-        // })
-        // .catch( (err) => {
-        //     console.log("Error:",err );
-        // }); 
+        $http({                          
+            method:"GET",
+            url: `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=false&number=5&tags=vegetarian%2Cdessert`,
+            headers: {
+                "x-mashape-key": RecipeCreds.apiKey,
+                "cache-control": "no-cache"
+              }
+        }).
+        then( (AllData) => {
+            console.log("data", AllData );
+            resolve(AllData);
+        })
+        .catch( (err) => {
+            console.log("Error:",err );
+        }); 
     });
 }
     let searchedRecipes = (searchstring) => {
@@ -54,7 +54,7 @@ smartApp.factory('RecipeFactory', function($q, $http, RecipeCreds) {
                     "x-mashape-key": RecipeCreds.apiKey,
                     "cache-control": "no-cache"
                   }
-            })
+                })
             .then( (actualData) => {
                 // console.log("searchedData",actualData );
                 // resolve(actualData.data);
@@ -67,5 +67,27 @@ smartApp.factory('RecipeFactory', function($q, $http, RecipeCreds) {
         }
         })
     }
-return { get10Recipes, searchedRecipes, getRecipeById };
+
+
+    let getSingleRecipeById = (recipeId) => {
+        return $q( (resolve, reject) => {
+                $http({
+                method:"GET",
+                url: `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/${recipeId}/information?`,
+                headers: {
+                    "x-mashape-key": RecipeCreds.apiKey,
+                    "cache-control": "no-cache"
+                  }
+                })
+            .then( (actualData) => {
+                // console.log("searchedData",actualData );
+                // resolve(actualData.data);
+                resolve(actualData);
+            })
+            .catch( (err) => {
+                console.log("err",err );
+            });
+        })
+    }
+return { get10Recipes, searchedRecipes, getRecipeById, getSingleRecipeById };
 });

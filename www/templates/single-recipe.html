@@ -7,16 +7,26 @@
     </div>
     <div class="list card">
       <ion-item>
-      <button class="button" ng-click="addToRecipeBook()">save</button>
-      <button class="button" ui-sref="selector"><ion-icon name="list-box"></ion-icon></button>
+      <button class="button" ng-click="saveRecipe()">save</button>
+      <!-- TODO : make a pop-up that alerts user that the recipe is saved. -->
+      <button class="button" ui-sref="selector">Listify</button>
       <button class="button" ui-sref="recipesView">cancel</button>
         
-        <h2>{{title}}</h2>
+        <h2>{{recipes.title}}</h2>
       </ion-item>
-      <div style="margin: 0px; line-height: 250px; background-color: rgb(232, 235, 239); text-align: center;">
-        <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+      <div style="margin: 0px; line-height: 0px; background-color: rgb(232, 235, 239); text-align: center;">
+        <img src="{{recipes.image}}" style="width: 100%;">
       </div>
-      <div class="item item-body"></div>
+      <div>
+      <h2>Ingredients:</h2>
+        <ol ng-repeat="item in recipes.extendedIngredients">
+          <li>{{item.name}}</li>
+        </ol>
+      </div>
+      <div>
+      <h2>Method</h2>
+        <p>{{recipes.instructions}}</p>
+      </div>
     </div>
   </ion-content>
 </ion-view>

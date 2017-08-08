@@ -1,0 +1,32 @@
+<ion-view title="Recipe">
+  <ion-content padding="true" class="has-header">
+    <div class="button-bar">
+ <!--      <button class="button button-positive button-block" ng-click="addToRecipeBook()">save</button>
+      <button class="button button-positive button-block" ui-sref="selector">make list</button>
+      <button class="button button-positive button-block" ui-sref="recipesView">cancel</button> -->
+    </div>
+    <div class="list card">
+      <ion-item>
+      <button class="button" ng-click="saveRecipe()">save</button>
+      <!-- TODO : make a pop-up that alerts user that the recipe is saved. -->
+      <button class="button" ui-sref="selector">Listify</button>
+      <button class="button" ui-sref="recipesView">cancel</button>
+        
+        <h2>{{recipes.title}}</h2>
+      </ion-item>
+      <div style="margin: 0px; line-height: 0px; background-color: rgb(232, 235, 239); text-align: center;">
+        <img src="{{recipes.image}}" style="width: 100%;">
+      </div>
+      <div>
+      <h2>Ingredients:</h2>
+        <ol ng-repeat="item in recipes.extendedIngredients">
+          <li>{{item.name}}</li>
+        </ol>
+      </div>
+      <div>
+      <h2>Method</h2>
+        <p>{{recipes.instructions}}</p>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

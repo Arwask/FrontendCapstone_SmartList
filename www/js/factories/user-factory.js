@@ -5,7 +5,7 @@ smartApp.factory('UserFactory', function($http, $q, FBCreds) {
         apiKey: FBCreds.apiKey,
         authDomain: FBCreds.authDomain
     };
-
+    let currentUser = "";
     firebase.initializeApp(config);
 
     let createUser = (userObj) => {
@@ -29,5 +29,23 @@ smartApp.factory('UserFactory', function($http, $q, FBCreds) {
     });
   };
 
-    return {createUser, loginUser};
+  let isAuthenticated = () => {
+    return $q( (resolve, reject) => {
+      firebase.auth().onAuthStateChanged( (user) => {
+        if(user) {
+          currentUser = user.uid;
+          resolve(true);
+        }
+        else { //on logout we need to set it back to null.
+          currentUser = null;
+          resolve(false);
+        }
+      });
+    });
+  };
+
+  let getUser = () => {
+    return currentUser;
+  }
+    return {createUser, loginUser, getUser, isAuthenticated};
 })

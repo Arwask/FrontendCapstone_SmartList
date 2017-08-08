@@ -1,3 +1,3 @@
-smartApp.controller('ScanCtrl', function($scope, GroceryFactory) {
-
-});
+smartApp.controller('ScanCtrl', function($scope, $cordovaBarcodeScanner, GroceryFactory) {
+    
+}); 

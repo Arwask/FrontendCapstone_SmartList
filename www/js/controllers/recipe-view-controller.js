@@ -1,4 +1,4 @@
-smartApp.controller('RecipeViewCtrl', function($scope, $window, RecipeFactory) {
+smartApp.controller('RecipeViewCtrl', function($scope, $window,$q, RecipeFactory) {
 
     RecipeFactory.get10Recipes()
     .then( (recievedRecipes) => {
@@ -12,15 +12,33 @@ smartApp.controller('RecipeViewCtrl', function($scope, $window, RecipeFactory) {
 
     $scope.searchText = "";
     console.log("$scope.search", $scope.search);
+    let recipeIdArray = [];
 
     $scope.searchedRecipe = (event) => {
         if(event.keyCode === 13)
         {
             console.log("$scope.search", $scope.searchText);
             RecipeFactory.searchedRecipes($scope.searchText)
+            .then( (searchedData) => {
+                console.log("searchedData", searchedData.data);
+                searchedData.data.forEach( (recipe) => {
+                    recipeIdArray.push(recipe.id);
+                    console.log("recipeIdArray",recipeIdArray);
+                })
+                RecipeFactory.getRecipeById(recipeIdArray)  
+                .then( (Recipedata) => {
+                    console.log("data", Recipedata);
+                $scope.recipes = Recipedata;
+                })
+
+            })
+            .catch( (err) => {
+                console.log("err",err );
+            });
+            $scope.searchText = "";
         }
         else
-            $scope.searchText += event.key
+            $scope.searchText += event.key;
     }
 
 });

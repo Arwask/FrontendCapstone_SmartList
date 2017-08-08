@@ -1,4 +1,4 @@
-smartApp.factory('fbDataFactory', function($q, $http, FBCreds, FirebaseUrl) {
+smartApp.factory('fbDataFactory', function($q, $http, FirebaseUrl) {
 
     let addRecipeToFirebase = (recipeObj) => {
         return $q( (resolve, reject) => {
@@ -13,6 +13,19 @@ smartApp.factory('fbDataFactory', function($q, $http, FBCreds, FirebaseUrl) {
         })
     }
 
-return { addRecipeToFirebase};
+    let getUserRecipes = (currentUser) => {
+        return $q( (resolve, reject) => {
+            $http.get(`${FirebaseUrl}recipes.json?orderBy="uid"&equalTo="${currentUser}"`)
+            .then( (response) => {
+                console.log("response", response.data);
+                resolve(response);
+            })
+            .catch( (err) => {
+                reject(err);
+            });
+        })
+    }
+
+return { addRecipeToFirebase, getUserRecipes};
 
 });

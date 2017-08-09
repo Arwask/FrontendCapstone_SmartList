@@ -6,7 +6,7 @@ smartApp.controller('SingleRecipeCtrl', function($scope, $stateParams, RecipeFac
     .then( (recievedData) => {
         // console.log("recievedData",recievedData.data );
         $scope.recipes = recievedData.data;
-        // console.log("$scope.recipes",$scope.recipes.title);
+        console.log("$scope.recipes",$scope.recipes);
     })
     .catch( (err) => {
         console.log("err",err );

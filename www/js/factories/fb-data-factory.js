@@ -81,7 +81,12 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
             UserFactory.isAuthenticated()
             .then( (user) => {
                 let currentUser = UserFactory.getUser(); 
-                 getLists(currentUser);
+                // console.log("currentUser", currentUser);
+                 getLists(currentUser).
+                 then( (allLists) => {
+                    // console.log("allLists", allLists);
+                    resolve(allLists);
+                 })
             });
         });
     }
@@ -89,9 +94,13 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
     // get a user's all lists
     let getLists = (currentUser) => {
         return $q( (resolve, reject) => {
+            // console.log("currentUser", `${FirebaseUrl}list.json?orderBy="uid"&equalTo="${currentUser}"`);
             $http.get(`${FirebaseUrl}list.json?orderBy="uid"&equalTo="${currentUser}"`)
             .then( (response) => {
-                console.log("response", response);
+                for(let key in response.data)
+                    response.data[key].list_id = key;
+                // console.log("listData", response.data);
+                resolve(response);
             })
         })
     }
@@ -109,6 +118,24 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
             });
         })
     }
-return { addRecipeToFirebase, getUserRecipes, deleteRecipeFromFB, getAllUserLists, addNewListToFB};
+
+    // let responseArr = [];
+    let getAllListItems = (listId) => {
+            return $q( (resolve,reject) => {
+            // console.log("list",list );
+                $http.get(`${FirebaseUrl}items.json?orderBy="list_id"&equalTo="${listId}"`)
+                .then( (response) => {
+                    // console.log("response???", response);
+                    for(let key in response.data) {
+                        response.data[key].item_id = key;
+                        // console.log("listData", response.data);
+                    }
+                        // responseArr.push(response);
+                       
+                        resolve(response.data);
+                })
+            })
+    }
+return { addRecipeToFirebase, getUserRecipes, deleteRecipeFromFB, getAllUserLists, addNewListToFB, getAllListItems};
 
 });

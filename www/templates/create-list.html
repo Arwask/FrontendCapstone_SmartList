@@ -2,7 +2,7 @@
   <ion-content>
   <!-- <form> -->
     <input type="text" placeholder="List name.." ng-model="listObj.listName"> 
-    <button ng-click = "addNewList()" ui-sref="selector">Add List</button>
+    <button ng-click = "addNewList()" ui-sref="selector({recipeId:{{recipe.id}}})">Add List</button>
     <!-- </form> -->
     <!-- {{listName}} -->
   </ion-content>

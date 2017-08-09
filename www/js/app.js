@@ -65,7 +65,7 @@ smartApp.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: '../templates/scan.html'
   })
   .state('selector', {
-    url: '/selector-list',
+    url: '/selector-list/{recipeId}',
     controller: 'SelectorCtrl',
     templateUrl: '../templates/selector-list.html'
   })

@@ -1,4 +1,4 @@
-smartApp.controller('CreateListCtrl', function($scope, fbDataFactory, UserFactory) {
+smartApp.controller('CreateListCtrl', function($scope, $window, fbDataFactory, UserFactory) {
 
     // $scope.listName = "";
     let currentUser = null;
@@ -22,5 +22,10 @@ smartApp.controller('CreateListCtrl', function($scope, fbDataFactory, UserFactor
         .then( (data) => {
             console.log("new list data?", data);
         })
-        }
+        .catch( (err) => {
+            console.log("err",err );
+        });
+    }
+
+
 });

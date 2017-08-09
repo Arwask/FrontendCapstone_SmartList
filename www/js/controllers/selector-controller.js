@@ -29,6 +29,7 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, fbDataFac
    $scope.update = (item) => {
       // $scope.selectedListItem = $scope.selectedList;
       console.log("$scope.selectedList", item.list_id); 
+      $scope.selectedList = item.list_id
    }
    let selectedItemArr = [];
 
@@ -39,7 +40,18 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, fbDataFac
 
    $scope.addToShoppingList = () => {
       
-    console.log("selectedItemArr", selectedItemArr);
+    let arr = selectedItemArr.map( (item, i) => {
+      let tempObj = {
+        item_name: item,
+        list_id : $scope.selectedList
+      }; 
+      fbDataFactory.addItemToFB(tempObj)
+      .then( (dataItem) => {
+        console.log("data after adding item", dataItem.data);
+      })
+    })
+
+
    }
 
     RecipeFactory.getSingleRecipeById(RecipeId)

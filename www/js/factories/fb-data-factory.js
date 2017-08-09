@@ -136,6 +136,27 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
                 })
             })
     }
-return { addRecipeToFirebase, getUserRecipes, deleteRecipeFromFB, getAllUserLists, addNewListToFB, getAllListItems};
+
+    let addItemToFB = (itemObj) => {
+        return $q( (resolve, reject) => {
+            $http.post(`${FirebaseUrl}items.json`,
+                angular.toJson(itemObj))
+            .then( (response) => {
+                resolve(response);
+            })
+            .catch( (err) => {
+                reject(err);
+            });
+        })
+    }
+return { 
+    addRecipeToFirebase, 
+    getUserRecipes, 
+    deleteRecipeFromFB, 
+    getAllUserLists, 
+    addNewListToFB, 
+    getAllListItems,
+    addItemToFB
+    };
 
 });

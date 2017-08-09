@@ -1,4 +1,4 @@
-<ion-view title="Recipe">
+<ion-view title="Recipe" cache-view="false">
   <ion-content padding="true" class="has-header">
     <div class="button-bar">
  <!--      <button class="button button-positive button-block" ng-click="addToRecipeBook()">save</button>
@@ -7,7 +7,7 @@
     </div>
     <div class="list card">
       <ion-item>
-      <button class="button" ng-click="deleteRecipe()">Delete</button>
+      <button class="button" ng-click="deleteRecipe()" ui-sref="recipeBook">Delete</button>
       <!-- TODO : make a pop-up that alerts user that the recipe is saved. -->
       <button class="button" ui-sref="selector">Listify</button>
       <button class="button" ui-sref="recipeBook">cancel</button>

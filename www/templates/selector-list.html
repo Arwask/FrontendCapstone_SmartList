@@ -1,5 +1,9 @@
 <ion-view title="Selector list">
   <ion-content padding="true" class="has-header">
+  <div class="form-group">
+        <label for="listSelect">Pick a board:</label>
+        <select id="listSelect" ng-options="list.id as board.title for board in boards" ng-model="pin.board_id"></select>
+    </div>
 <button ui-sref="createList" ng-click="addNewListToFB()">Add</button>
     <form class="list" ng-repeat="item in items">
       <ion-checkbox ng-checked="">{{item.name}}</ion-checkbox>

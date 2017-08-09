@@ -59,18 +59,18 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
 
     let keyOfRecipeToDelete;
     let deleteRecipeFromFB = (currentRecipeId) => {
+      return $q( (resolve, reject) => {
        keyOfRecipeToDelete = getUserRecipeKey(currentRecipeId)
        .then( (keyOfRecipeToDelete) => {
-          return $q( (resolve, reject) => {
-                $http.delete(`${FirebaseUrl}recipes/${keyOfRecipeToDelete}.json`)
-                .then( (response) => {
-                    console.log("response????", response);
-                    resolve(response.data);
-                })
-                .catch( (err) => {
-                    reject(err);
-                });
-            })
+               return $http.delete(`${FirebaseUrl}recipes/${keyOfRecipeToDelete}.json`)
+        })
+        .then( (response) => {
+            console.log("response????", response);
+            resolve(response.data);
+        })
+        .catch( (err) => {
+            reject(err);
+        });
        // console.log("keyOfRecipeToDelete",keyOfRecipeToDelete );
        })
     }

@@ -46,6 +46,7 @@ smartApp.config(function($stateProvider, $urlRouterProvider) {
   .state('recipeBook', {
     url: '/recipes/book',
     controller: 'RecipeBookCtrl',
+    // cache: false,
     templateUrl: '../templates/recipe-book.html'
   })
   .state('favSingleRecipe', {

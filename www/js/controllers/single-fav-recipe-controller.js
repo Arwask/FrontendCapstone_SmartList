@@ -1,4 +1,4 @@
-smartApp.controller('SingleFavRecipeCtrl', function($scope, $stateParams, fbDataFactory, RecipeFactory) {
+smartApp.controller('SingleFavRecipeCtrl', function($scope, $stateParams,$location, fbDataFactory, RecipeFactory) {
     
     let currentRecipeId = $stateParams.recipeId;
     console.log("currentRecipeId", currentRecipeId);
@@ -6,12 +6,14 @@ smartApp.controller('SingleFavRecipeCtrl', function($scope, $stateParams, fbData
 
     $scope.deleteRecipe = () => {
         fbDataFactory.deleteRecipeFromFB(currentRecipeId)
-        // .then( (response) => {
-        //     console.log("response check?", response);
-        // })
-        // .catch( (err) => {
-        //     console.log("err", err);
-        // })
+        .then( (responseText) => {
+            console.log("response check?", responseText);
+            resolve(responseText.data);
+            $window.location.href="recipes/book";
+        })
+        .catch( (err) => {
+            console.log("err", err);
+        })
     };
 
     RecipeFactory.getSingleRecipeById(currentRecipeId)

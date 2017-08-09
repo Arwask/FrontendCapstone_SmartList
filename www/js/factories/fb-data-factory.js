@@ -1,4 +1,4 @@
-smartApp.factory('fbDataFactory', function($q, $http, FirebaseUrl, UserFactory) {
+smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
 
     let addRecipeToFirebase = (recipeObj) => {
         return $q( (resolve, reject) => {
@@ -32,7 +32,7 @@ smartApp.factory('fbDataFactory', function($q, $http, FirebaseUrl, UserFactory) 
     }
 
     
-
+//get the fbkey of the selected user's recipe's key.
     let getUserRecipeKey = (currentRecipeId) => {
         return $q( (resolve, reject) => {
             UserFactory.isAuthenticated()
@@ -56,24 +56,59 @@ smartApp.factory('fbDataFactory', function($q, $http, FirebaseUrl, UserFactory) 
             
         })
     }
+
     let keyOfRecipeToDelete;
     let deleteRecipeFromFB = (currentRecipeId) => {
        keyOfRecipeToDelete = getUserRecipeKey(currentRecipeId)
        .then( (keyOfRecipeToDelete) => {
-           return $q( (resolve, reject) => {
+          return $q( (resolve, reject) => {
                 $http.delete(`${FirebaseUrl}recipes/${keyOfRecipeToDelete}.json`)
                 .then( (response) => {
-                    resolve(response);
+                    console.log("response????", response);
+                    resolve(response.data);
                 })
                 .catch( (err) => {
                     reject(err);
                 });
             })
        // console.log("keyOfRecipeToDelete",keyOfRecipeToDelete );
-        
        })
     }
+    
+    //get userlists which calls a function
+    let getAllUserLists = () => {
+        return $q( (resolve, reject) => {
+            UserFactory.isAuthenticated()
+            .then( (user) => {
+                let currentUser = UserFactory.getUser(); 
+                 getLists(currentUser);
+            });
+        });
+    }
 
-return { addRecipeToFirebase, getUserRecipes, deleteRecipeFromFB};
+    // get a user's all lists
+    let getLists = (currentUser) => {
+        return $q( (resolve, reject) => {
+            $http.get(`${FirebaseUrl}list.json?orderBy="uid"&equalTo="${currentUser}"`)
+            .then( (response) => {
+                console.log("response", response);
+            })
+        })
+    }
+
+    // Add new list to FB
+    let addNewListToFB = (listObj) => {
+        return $q( (resolve, reject) => {
+            $http.post(`${FirebaseUrl}list.json`,
+                angular.toJson(listObj))
+            .then( (response) => {
+                resolve(response);
+            })
+            .catch( (err) => {
+                reject(err);
+            });
+        })
+    }
+return { addRecipeToFirebase, getUserRecipes, deleteRecipeFromFB, getAllUserLists, addNewListToFB};
 
 });

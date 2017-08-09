@@ -1,0 +1,9 @@
+<ion-view title="Selector list">
+  <ion-content padding="true" class="has-header">
+<button ui-sref="createList" ng-click="addNewListToFB()">Add</button>
+    <form class="list" ng-repeat="item in items">
+      <ion-checkbox ng-checked="">{{item.name}}</ion-checkbox>
+      <button ng-click="addToShoppingList">Done</button>
+    </form>
+  </ion-content>
+</ion-view>

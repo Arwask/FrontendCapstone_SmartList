@@ -35,10 +35,13 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, fbDataFac
    $scope.getSelectedItems = (item) => {
     if(item)
     selectedItemArr.push(item.name);
+   }
+
+   $scope.addToShoppingList = () => {
+      
     console.log("selectedItemArr", selectedItemArr);
    }
 
-   
     RecipeFactory.getSingleRecipeById(RecipeId)
     .then( (dataRecipe) => {
         $scope.items = dataRecipe.data.extendedIngredients;

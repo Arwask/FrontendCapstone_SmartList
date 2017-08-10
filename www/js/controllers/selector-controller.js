@@ -32,6 +32,7 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $window, 
       fbDataFactory.addItemToFB(tempObj)
       .then( (dataItem) => {
         console.log("data after adding item", dataItem.data);
+      $window.location.reload()
       })
     })
 

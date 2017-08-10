@@ -1,4 +1,6 @@
-smartApp.controller('ShoppingListCtrl', function($scope, fbDataFactory) {
+smartApp.controller('ShoppingListCtrl', function($scope,$ionicPopup,$window, fbDataFactory, UserFactory) {
+    
+
     // $scope.scanBarcode = function() {
 
     //     console.log("click click");
@@ -24,8 +26,37 @@ smartApp.controller('ShoppingListCtrl', function($scope, fbDataFactory) {
     showDelete: false
     };
   
-$scope.edit = function(list) {
-    alert('Edit Item: ' + list.id);
+$scope.showEditPopup = function(list) {
+    // $scope.edited = list;
+    $scope.data = list;
+    var editPopup = $ionicPopup.show({
+        template: '<input type="text" ng-model="data.listName">',
+        title: 'Edit the List Name',
+        scope: $scope,
+        buttons: [
+          { text: 'Cancel' },
+          {
+            text: '<b>Save</b>',
+            type: 'button-positive',
+            onTap: function(e) {
+              if (!$scope.data.listName) {
+                //don't allow the user to close unless he enters wifi password
+                e.preventDefault();
+              } 
+              else 
+                return $scope.data;
+            }
+          }
+        ]
+    });
+
+    editPopup.then( (editedList) => {
+        console.log("editedList", editedList);
+        fbDataFactory.EditListInFB(editedList)
+        .then( (recievedData) => {
+            console.log("recievedData", recievedData);
+        })
+    })
 };
 
 
@@ -38,5 +69,53 @@ $scope.onItemDelete = function(list) {
         console.log("data", data);
     })
 };
-   
+ 
+ $scope.showPopup = function() {
+  $scope.data = {};
+
+  // An elaborate, custom popup
+  var myPopup = $ionicPopup.show({
+    template: '<input type="text" ng-model="data.newList">',
+    title: 'Enter New List Name',
+    scope: $scope,
+    buttons: [
+      { text: 'Cancel' },
+      {
+        text: '<b>Save</b>',
+        type: 'button-positive',
+        onTap: function(e) {
+          if (!$scope.data.newList) {
+            //don't allow the user to close unless he enters wifi password
+            e.preventDefault();
+          } 
+          else 
+            return $scope.data.newList;
+        }
+      }
+    ]
+  });
+
+  myPopup.then(function(res) {
+    let currentUser = null;
+    let listObj = {};
+    UserFactory.isAuthenticated()
+    .then( (user) => {
+    currentUser = UserFactory.getUser(); 
+    console.log("currentUser", currentUser);
+     listObj = {
+        listName: res,
+        uid : currentUser
+    }
+        console.log("listObj", listObj);
+        fbDataFactory.addNewListToFB(listObj)
+        .then( (data) => {
+            $window.location.reload();
+
+        })
+        .catch( (err) => {
+            console.log("err",err );
+        });
+    })
+  }); 
+  } 
 });

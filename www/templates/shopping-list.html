@@ -8,7 +8,7 @@
     </div>
     <h1 class="title">Ionic Delete/Option Buttons</h1>
     <div class="buttons">
-      <button class="button" ui-sref="createList">
+      <button ng-click="showPopup()">
           Add
       </button>
     </div>
@@ -21,7 +21,7 @@
       <ion-delete-button class="ion-minus-circled" 
                          ng-click="onItemDelete(list)">
       </ion-delete-button>
-      <ion-option-button class="button-assertive" ng-click="edit(list)">Edit
+      <ion-option-button class="button-assertive" ng-click="showEditPopup(list)">Edit
       </ion-option-button>
       <ion-reorder-button class="ion-navicon" on-reorder="moveItem(list, $fromIndex, $toIndex)"></ion-reorder-button>
 

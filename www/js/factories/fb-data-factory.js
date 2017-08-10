@@ -189,6 +189,21 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
         });
     });
     }
+
+    let EditListInFB = (listObj) => {
+        return $q( (resolve, reject) => {
+            let listId = listObj.list_id;
+            $http.put(`${FirebaseUrl}list/${listId}.json`,
+                    angular.toJson(listObj))
+            .then( (updatedList) => {
+                // console.log("updatedList", updatedList.data);
+                resolve(updatedList.data);
+            })
+            .catch( (err) => {
+                console.log("err", err);
+            });
+        })
+    }
 return { 
     addRecipeToFirebase, 
     getUserRecipes, 
@@ -198,7 +213,8 @@ return {
     getAllListItems,
     addItemToFB,
     deleteOneItemFromFB,
-    deleteOneListFromFB
+    deleteOneListFromFB,
+    EditListInFB
     };
 
 });

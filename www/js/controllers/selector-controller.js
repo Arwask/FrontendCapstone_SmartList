@@ -1,4 +1,4 @@
-smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, fbDataFactory, RecipeFactory ) {
+smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $window, $ionicPopup, fbDataFactory, RecipeFactory, UserFactory) {
     
     let RecipeId = $stateParams.recipeId;
     console.log("RecipeId",RecipeId );
@@ -8,23 +8,7 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, fbDataFac
    .then( (listData) => {
     $scope.lists = Object.values(listData.data); //<----get all lists for a user
     console.log("listData", $scope.lists);
-    // for( let key in  $scope.lists)
-    //     listIdArr.push($scope.lists[key].list_id)//<---- put all ids in an array
-    // console.log("listIdArr", listIdArr)
-   // return listIdArr;
-   // $scope.selectedList = "";
-   // console.log("$scope.selected", $scope.selectedList);
-   })
-   // .then( (listIdArr) => {
-   //    listIdArr.forEach( (listId) => {
-   //       fbDataFactory.getAllListItems(listId)// <---- get items for each list
-   //      .then( (recievedItems) => {
-   //          // console.log("recievedItems???", recievedItems.data);
-   //          responseArr.push(recievedItems.data)
-   //    console.log("recievedItems",  responseArr);  
-   //         })
-   //    })
-   // })
+   });
 
    $scope.update = (item) => {
       // $scope.selectedListItem = $scope.selectedList;
@@ -58,4 +42,55 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, fbDataFac
     .then( (dataRecipe) => {
         $scope.items = dataRecipe.data.extendedIngredients;
       });
+
+  $scope.showPopup = function() {
+  $scope.data = {};
+
+  // An elaborate, custom popup
+  var myPopup = $ionicPopup.show({
+    template: '<input type="text" ng-model="data.newList">',
+    title: 'Enter New List Name',
+    scope: $scope,
+    buttons: [
+      { text: 'Cancel' },
+      {
+        text: '<b>Save</b>',
+        type: 'button-positive',
+        onTap: function(e) {
+          if (!$scope.data.newList) {
+            //don't allow the user to close unless he enters wifi password
+            e.preventDefault();
+          } else {
+            return $scope.data.newList;
+          }
+        }
+      }
+    ]
+  });
+
+  myPopup.then(function(res) {
+    let currentUser = null;
+    let listObj = {};
+    UserFactory.isAuthenticated()
+    .then( (user) => {
+    currentUser = UserFactory.getUser(); 
+    console.log("currentUser", currentUser);
+     listObj = {
+        listName: res,
+        uid : currentUser
+    }
+
+
+        console.log("listObj", listObj);
+        fbDataFactory.addNewListToFB(listObj)
+        .then( (data) => {
+            $window.location.reload();
+
+        })
+        .catch( (err) => {
+            console.log("err",err );
+        });
+    })
+  });
+}
 });

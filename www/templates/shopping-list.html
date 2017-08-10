@@ -8,13 +8,13 @@
     </div>
     <h1 class="title">Ionic Delete/Option Buttons</h1>
     <div class="buttons">
-      <button class="button" ng-click="data.showDelete = false; data.showReorder = !data.showReorder">
-          Reorder
+      <button class="button" ui-sref="createList">
+          Add
       </button>
     </div>
   </ion-header-bar>
       
-  <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+  <ion-list show-delete="data.showDelete">
 
     <ion-item ng-repeat="list in lists" item="list" ui-sref="singleListView({shoppingListId : list.list_id})" class="item-remove-animate">
       {{ list.listName }}

@@ -4,7 +4,6 @@ smartApp.controller('CreateListCtrl', function($scope, $window, fbDataFactory, U
     let currentUser = null;
     UserFactory.isAuthenticated()
     .then( (user) => {
-        console.log("user??", user);
     currentUser = UserFactory.getUser(); 
     })
 
@@ -14,13 +13,10 @@ smartApp.controller('CreateListCtrl', function($scope, $window, fbDataFactory, U
     }
 
     $scope.addNewList = () => {
-        // $scope.$apply()
         $scope.listObj.uid = currentUser; //TODO: make it into one obj. 
-        // console.log("currentUser", currentUser);
-        console.log("listObj",$scope.listObj );
         fbDataFactory.addNewListToFB($scope.listObj)
         .then( (data) => {
-            console.log("new list data?", data);
+            $window.location.reload();
         })
         .catch( (err) => {
             console.log("err",err );

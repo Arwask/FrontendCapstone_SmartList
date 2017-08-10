@@ -156,6 +156,39 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
         })
     }
 
+    let deleteOneListFromFB = (listId) => {
+        return $q( (resolve, reject) => {
+           $http.delete(`${FirebaseUrl}list/${listId}.json`)
+            .then( (response) => {
+                console.log("deleted???", response);
+                deleteAllItemsOfAList(listId) //deletes all item with this list_id
+                .then( (someData) => {
+                    console.log("someData", someData);
+                    // resolve(someData);
+                })
+            })
+            .catch( (err) => {
+                reject(err);
+            });
+        });
+    }
+
+    let deleteAllItemsOfAList = (listId) => {
+     return $q( (resolve, reject) => {   
+        $http.get(`${FirebaseUrl}items.json?orderBy="list_id"&equalTo="${listId}"`)
+        .then( (response) => {
+            Object.keys(response.data).forEach( (item) => {
+                deleteOneItemFromFB(item).
+                then( (uselessData) => {
+                    console.log("uselessData", uselessData);
+                })
+            })
+        })
+        .catch( (e) => {
+            console.log("error", e);
+        });
+    });
+    }
 return { 
     addRecipeToFirebase, 
     getUserRecipes, 
@@ -164,7 +197,8 @@ return {
     addNewListToFB, 
     getAllListItems,
     addItemToFB,
-    deleteOneItemFromFB
+    deleteOneItemFromFB,
+    deleteOneListFromFB
     };
 
 });

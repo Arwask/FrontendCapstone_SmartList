@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-let smartApp = angular.module('smartApp', ['ionic','ngCordova']);
+let smartApp = angular.module('smartApp', ['ionic']);
 
 smartApp.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -46,7 +46,13 @@ smartApp.config(function($stateProvider, $urlRouterProvider) {
   .state('recipeBook', {
     url: '/recipes/book',
     controller: 'RecipeBookCtrl',
+    // cache: false,
     templateUrl: '../templates/recipe-book.html'
+  })
+  .state('favSingleRecipe', {
+    url: '/recipes/favorite/{recipeId}',
+    controller: 'SingleFavRecipeCtrl',
+    templateUrl: '../templates/single-fav-recipe.html'
   })
   .state('mainOptions', {
     url: '/main-options',
@@ -59,9 +65,19 @@ smartApp.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: '../templates/scan.html'
   })
   .state('selector', {
-    url: '/selector-list',
+    url: '/selector-list/{recipeId}',
     controller: 'SelectorCtrl',
     templateUrl: '../templates/selector-list.html'
+  })
+  .state('createList', {
+    url: '/create-list',
+    controller: 'CreateListCtrl',
+    templateUrl: '../templates/create-list.html'
+  })
+  .state('singleListView', {
+    url: '/shopping-list/{shoppingListId}',
+    controller: 'SingleListCtrl',
+    templateUrl: '../templates/single-list-view.html'
   })
   .state('shoppingList', {
     url: '/shopping-list',

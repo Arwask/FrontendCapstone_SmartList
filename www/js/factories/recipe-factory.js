@@ -89,5 +89,6 @@ smartApp.factory('RecipeFactory', function($q, $http, RecipeCreds) {
             });
         })
     }
+
 return { get10Recipes, searchedRecipes, getRecipeById, getSingleRecipeById };
 });

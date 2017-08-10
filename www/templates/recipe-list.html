@@ -4,12 +4,12 @@
 <input type="text" name="search" placeholder="search.." ng-model="searchText" ng-keyPress="searchedRecipe($event)" />
 
 <ion-card ng-repeat="recipe in recipes" ui-sref="singleRecipe({recipeId:{{recipe.id}}})">
-  <img src={{recipe.image}} alt="{{recipe.title}}" class="full-image recipeCard"/>
-  <ion-card-content padding>
-    <ion-card-title>
-      {{recipe.title}}
-      </ion-card-title>
-  </ion-card-content>
+  <div class="list card">
+      <div style="margin: 0px; line-height: 0px; background-color: rgb(232, 235, 239); text-align: center;">
+        <img src="{{recipe.image}}" style="width: 100%;">
+        <h2>{{recipe.title}}</h2>
+      </div>
+  </div>
 </ion-card>
 </form>
 </ion-content>

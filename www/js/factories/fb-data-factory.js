@@ -204,6 +204,20 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
             });
         })
     }
+
+    let EditItemInFB = (itemObj) => {
+        return $q( (resolve, reject) => {
+            let itemId = itemObj.item_id;
+            $http.put(`${FirebaseUrl}items/${itemId}.json`,
+                    angular.toJson(itemObj))
+            .then( (updatedItem) => {
+                resolve(updatedItem.data);
+            })
+            .catch( (err) => {
+                console.log("err", err);
+            });
+        })
+    }
 return { 
     addRecipeToFirebase, 
     getUserRecipes, 
@@ -214,7 +228,8 @@ return {
     addItemToFB,
     deleteOneItemFromFB,
     deleteOneListFromFB,
-    EditListInFB
+    EditListInFB,
+    EditItemInFB
     };
 
 });

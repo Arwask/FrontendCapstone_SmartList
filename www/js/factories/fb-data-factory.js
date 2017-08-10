@@ -119,19 +119,13 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
         })
     }
 
-    // let responseArr = [];
     let getAllListItems = (listId) => {
             return $q( (resolve,reject) => {
-            // console.log("list",list );
                 $http.get(`${FirebaseUrl}items.json?orderBy="list_id"&equalTo="${listId}"`)
                 .then( (response) => {
-                    // console.log("response???", response);
                     for(let key in response.data) {
-                        response.data[key].item_id = key;
-                        // console.log("listData", response.data);
-                    }
-                        // responseArr.push(response);
-                       
+                        response.data[key].item_id = key; //save fb key to the retrieved obj
+                    }                       
                         resolve(response.data);
                 })
             })
@@ -149,6 +143,19 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
             });
         })
     }
+
+    let deleteOneItemFromFB = (itemId) => {
+        return $q( (resolve, reject) => {
+           $http.delete(`${FirebaseUrl}items/${itemId}.json`)
+            .then( (response) => {
+                resolve(response);
+            })
+            .catch( (err) => {
+                reject(err);
+            });
+        })
+    }
+
 return { 
     addRecipeToFirebase, 
     getUserRecipes, 
@@ -156,7 +163,8 @@ return {
     getAllUserLists, 
     addNewListToFB, 
     getAllListItems,
-    addItemToFB
+    addItemToFB,
+    deleteOneItemFromFB
     };
 
 });

@@ -8,6 +8,6 @@
     <form class="list" ng-repeat="item in items">
       <ion-checkbox ng-model="selected" ng-change="getSelectedItems(item)">{{item.name}}</ion-checkbox>
     </form>
-      <button ng-click="addToShoppingList()" ui-sref="shoppingList({shoppingListId : selectedList})">Done</button>
+      <button ng-click="addToShoppingList()" ui-sref="singleListView({shoppingListId : selectedList})">Done</button>
   </ion-content>
 </ion-view>

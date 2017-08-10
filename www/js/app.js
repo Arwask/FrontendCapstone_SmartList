@@ -74,8 +74,13 @@ smartApp.config(function($stateProvider, $urlRouterProvider) {
     controller: 'CreateListCtrl',
     templateUrl: '../templates/create-list.html'
   })
-  .state('shoppingList', {
+  .state('singleListView', {
     url: '/shopping-list/{shoppingListId}',
+    controller: 'SingleListCtrl',
+    templateUrl: '../templates/single-list-view.html'
+  })
+  .state('shoppingList', {
+    url: '/shopping-list',
     controller: 'ShoppingListCtrl',
     templateUrl: '../templates/shopping-list.html'
   })

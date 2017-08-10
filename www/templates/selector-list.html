@@ -2,12 +2,13 @@
   <ion-content padding="true" class="has-header">
         <label for="listSelect">Pick a List:</label>
   <div class="form-group">
-        <select id="listSelect" ng-options="list as list.listName for list in lists" ng-model="list.list_id" ng-change="update(list.list_id)"></select>
+        <select id="listSelect" ng-options="list as list.listName for list in lists" ng-model="list.selected" ng-change="update(list)" ng-init="list.selected = false"></select>
     </div>
 <button ng-click="showPopup()">Add New List</button>
     <form class="list" ng-repeat="item in items">
       <ion-checkbox ng-model="selected" ng-change="getSelectedItems(item)">{{item.name}}</ion-checkbox>
     </form>
-      <button ng-click="addToShoppingList()" ui-sref="singleListView({shoppingListId : selectedList})">Done</button>
+      <button  ng-click="addToShoppingList()" >Done</button>
   </ion-content>
 </ion-view>
+<!-- ng-if="list.selected" ui-sref="singleListView({shoppingListId : list.selected.list_id})" -->

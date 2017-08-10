@@ -1,4 +1,4 @@
-smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $window, $ionicPopup, fbDataFactory, RecipeFactory, UserFactory) {
+smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $window,$location, $ionicPopup, fbDataFactory, RecipeFactory, UserFactory) {
     
     let RecipeId = $stateParams.recipeId;
     console.log("RecipeId",RecipeId );
@@ -12,8 +12,8 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $window, 
 
    $scope.update = (item) => {
       // $scope.selectedListItem = $scope.selectedList;
-      console.log("$scope.selectedList", item.list_id); 
-      $scope.selectedList = item.list_id
+      console.log("$scope.selectedList", item); 
+      $scope.selectedList = item.selected;
    }
    let selectedItemArr = [];
 
@@ -23,20 +23,35 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $window, 
    }
 
    $scope.addToShoppingList = () => {
-      
-    let arr = selectedItemArr.map( (item, i) => {
-      let tempObj = {
-        item_name: item,
-        list_id : $scope.selectedList
-      }; 
-      fbDataFactory.addItemToFB(tempObj)
-      .then( (dataItem) => {
-        console.log("data after adding item", dataItem.data);
-      $window.location.reload()
+     if($scope.selectedList == ( "" || null || undefined))
+     {
+        var alertPopup = $ionicPopup.alert({
+        title: 'You have not selected a list',
+        template: 'Please select a list you would like to add item to'
+        });
+        alertPopup.then(function(res) {
+         console.log('They better select a list');
+        });
+     }
+     else 
+     {
+
+      let arr = selectedItemArr.map( (item, i) => {
+        let tempObj = {
+          item_name: item,
+          list_id : $scope.selectedList.list_id
+        }; 
+        fbDataFactory.addItemToFB(tempObj)
+        .then( (dataItem) => {
+          console.log("data after adding item", dataItem.data);
+        // $state.go(`/shopping-list/{shoppingListId :${$scope.selectedList} }`);
+         let x = "http://localhost:8100/?ionicplatform=android&http://localhost:8100/ionic-lab#";
+         $window.location.href = `${x}/shopping-list/${$scope.selectedList.list_id}`;
+        $window.location.reload()
+         // console.log("$window.location.href", $window.location.href);
+        })
       })
-    })
-
-
+     }
    }
 
     RecipeFactory.getSingleRecipeById(RecipeId)

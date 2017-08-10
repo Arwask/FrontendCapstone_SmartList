@@ -1,4 +1,4 @@
-smartApp.controller('RegisterCtrl', function($scope, $http, $q, $window, UserFactory) {
+smartApp.controller('RegisterCtrl', function($scope, $http, $q, $window, UserFactory, ActualURL) {
 
 $scope.registerInfo = {
     email: "",
@@ -12,7 +12,11 @@ $scope.register = () => {
         UserFactory.createUser($scope.registerInfo)
         .then( (userData) => {
             console.log("New User:", userData);
-            UserFactory.loginUser($scope.registerInfo);
+            UserFactory.loginUser($scope.registerInfo)
+            .then( (data) => {
+                $window.location.href = `${ActualURL}/register`;
+            });
+
         });
     };
 

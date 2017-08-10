@@ -22,7 +22,8 @@ smartApp.run(function($ionicPlatform) {
     }
   });
 });
-smartApp.constant('FirebaseUrl', 'https://smart-list-d50e4.firebaseio.com/')
+smartApp.constant('FirebaseUrl', 'https://smart-list-d50e4.firebaseio.com/');
+smartApp.constant('ActualURL',  "http://localhost:8100/?ionicplatform=android&http://localhost:8100/ionic-lab#")
 
 
 smartApp.config(function($stateProvider, $urlRouterProvider) {

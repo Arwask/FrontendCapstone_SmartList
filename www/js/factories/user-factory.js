@@ -7,6 +7,7 @@ smartApp.factory('UserFactory', function($http, $q, FBCreds) {
     };
     let currentUser = "";
     firebase.initializeApp(config);
+    var provider = new firebase.auth.GoogleAuthProvider();
 
     let createUser = (userObj) => {
         return firebase.auth().createUserWithEmailAndPassword(userObj.email, userObj.password)
@@ -44,8 +45,23 @@ smartApp.factory('UserFactory', function($http, $q, FBCreds) {
     });
   };
 
+
+  let logUserWithGoogle = () => {
+    return $q( (resolve, reject) => {
+      firebase.auth().signInWithPopup( provider)
+      .then( (data) => {
+      currentUser = data.user.uid;
+      console.log("currentUser", currentUser);
+      resolve(currentUser);
+      })
+      .catch( (err) => {
+      console.log("error loggin in", err.message);
+      });
+    });
+  }
   let getUser = () => {
     return currentUser;
   }
-    return {createUser, loginUser, getUser, isAuthenticated};
+
+  return {createUser, loginUser, getUser, isAuthenticated, logUserWithGoogle};
 })

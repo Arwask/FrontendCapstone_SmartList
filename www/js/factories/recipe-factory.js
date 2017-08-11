@@ -75,9 +75,8 @@ smartApp.factory('RecipeFactory', function($q, $http, RecipeCreds) {
                 method:"GET",
                 url: `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/${recipeId}/information?`,
                 headers: {
-                    "x-mashape-key": RecipeCreds.apiKey,
-                    "cache-control": "no-cache"
-                  }
+                    "x-mashape-key": RecipeCreds.apiKey
+                    }
                 })
             .then( (actualData) => {
                 // console.log("searchedData",actualData );

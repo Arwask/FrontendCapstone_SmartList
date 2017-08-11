@@ -22,10 +22,23 @@ smartApp.run(function($ionicPlatform) {
     }
   });
 });
-smartApp.constant('FirebaseUrl', 'https://smart-list-d50e4.firebaseio.com/')
-
+smartApp.constant('FirebaseUrl', 'https://smart-list-d50e4.firebaseio.com/');
+smartApp.constant('ActualURL',  "http://localhost:8100/?ionicplatform=android&http://localhost:8100/ionic-lab#")
 
 smartApp.config(function($stateProvider, $urlRouterProvider) {
+
+// let isUser = () => {
+//       firebase.auth().onAuthStateChanged( (user) => {
+//         if(user) {
+//           currentUser = user.uid;
+//           return true;
+//         }
+//         else { //on logout we need to set it back to null.
+//           currentUser = null;
+//           return false;
+//         }
+//       });
+// }
   $stateProvider
   .state('index', {
     url: '/',
@@ -68,11 +81,6 @@ smartApp.config(function($stateProvider, $urlRouterProvider) {
     url: '/selector-list/{recipeId}',
     controller: 'SelectorCtrl',
     templateUrl: '../templates/selector-list.html'
-  })
-  .state('createList', {
-    url: '/create-list',
-    controller: 'CreateListCtrl',
-    templateUrl: '../templates/create-list.html'
   })
   .state('singleListView', {
     url: '/shopping-list/{shoppingListId}',

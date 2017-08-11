@@ -189,6 +189,48 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
         });
     });
     }
+
+    let EditListInFB = (listObj) => {
+        return $q( (resolve, reject) => {
+            let listId = listObj.list_id;
+            $http.put(`${FirebaseUrl}list/${listId}.json`,
+                    angular.toJson(listObj))
+            .then( (updatedList) => {
+                // console.log("updatedList", updatedList.data);
+                resolve(updatedList.data);
+            })
+            .catch( (err) => {
+                console.log("err", err);
+            });
+        })
+    }
+
+    let EditItemInFB = (itemObj) => {
+        return $q( (resolve, reject) => {
+            let itemId = itemObj.item_id;
+            $http.put(`${FirebaseUrl}items/${itemId}.json`,
+                    angular.toJson(itemObj))
+            .then( (updatedItem) => {
+                resolve(updatedItem.data);
+            })
+            .catch( (err) => {
+                console.log("err", err);
+            });
+        })
+    }
+
+    let addNewItemToFB = (itemObj) => {
+        return $q( (resolve, reject) => {
+            $http.post(`${FirebaseUrl}items.json`,
+                angular.toJson(itemObj))
+            .then( (response) => {
+                resolve(response);
+            })
+            .catch( (err) => {
+                reject(err);
+            });
+        })
+    }
 return { 
     addRecipeToFirebase, 
     getUserRecipes, 
@@ -198,7 +240,10 @@ return {
     getAllListItems,
     addItemToFB,
     deleteOneItemFromFB,
-    deleteOneListFromFB
+    deleteOneListFromFB,
+    EditListInFB,
+    EditItemInFB,
+    addNewItemToFB
     };
 
 });

@@ -10,15 +10,13 @@ smartApp.controller('RecipeViewCtrl', function($scope, $window,$q, RecipeFactory
         console.log("Error",err );
     })
 
-    $scope.searchText = "";
-    console.log("$scope.search", $scope.search);
+    // $scope.searchText = "";
+    // console.log("$scope.search", $scope.searchText);
     let recipeIdArray = [];
 
-    $scope.searchedRecipe = (event) => {
-        if(event.keyCode === 13)
-        {
-            console.log("$scope.search", $scope.searchText);
-            RecipeFactory.searchedRecipes($scope.searchText)
+    $scope.searchedRecipe = (searchText) => {
+            console.log("$scope.search", searchText);
+            RecipeFactory.searchedRecipes(searchText)
             .then( (searchedData) => {
                 console.log("searchedData", searchedData.data);
                 searchedData.data.forEach( (recipe) => {
@@ -35,10 +33,6 @@ smartApp.controller('RecipeViewCtrl', function($scope, $window,$q, RecipeFactory
             .catch( (err) => {
                 console.log("err",err );
             });
-            $scope.searchText = "";
-        }
-        else
-            $scope.searchText += event.key;
     }
 
 });

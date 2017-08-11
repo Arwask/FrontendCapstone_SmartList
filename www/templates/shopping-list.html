@@ -6,22 +6,21 @@
       <button class="button button-icon icon ion-ios-minus-outline"
         ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
     </div>
-    <h1 class="title">Ionic Delete/Option Buttons</h1>
     <div class="buttons">
-      <button class="button" ng-click="data.showDelete = false; data.showReorder = !data.showReorder">
-          Reorder
+      <button ng-click="showPopup()">
+          Add
       </button>
     </div>
   </ion-header-bar>
       
-  <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+  <ion-list show-delete="data.showDelete">
 
     <ion-item ng-repeat="list in lists" item="list" ui-sref="singleListView({shoppingListId : list.list_id})" class="item-remove-animate">
       {{ list.listName }}
       <ion-delete-button class="ion-minus-circled" 
                          ng-click="onItemDelete(list)">
       </ion-delete-button>
-      <ion-option-button class="button-assertive" ng-click="edit(list)">Edit
+      <ion-option-button class="button-assertive" ng-click="showEditPopup(list)">Edit
       </ion-option-button>
       <ion-reorder-button class="ion-navicon" on-reorder="moveItem(list, $fromIndex, $toIndex)"></ion-reorder-button>
 

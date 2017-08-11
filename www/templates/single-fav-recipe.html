@@ -9,7 +9,7 @@
       <ion-item>
       <button class="button" ng-click="deleteRecipe()" ui-sref="recipeBook">Delete</button>
       <!-- TODO : make a pop-up that alerts user that the recipe is saved. -->
-      <button class="button" ui-sref="selector">Listify</button>
+      <button class="button" ui-sref="selector({recipeId : recipes.id})">Listify</button>
       <button class="button" ui-sref="recipeBook">cancel</button>
         
       </ion-item>

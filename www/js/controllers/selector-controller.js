@@ -1,4 +1,4 @@
-smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, fbDataFactory, RecipeFactory ) {
+smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $window,$location, $ionicPopup, fbDataFactory, RecipeFactory, UserFactory, ActualURL) {
     
     let RecipeId = $stateParams.recipeId;
     console.log("RecipeId",RecipeId );
@@ -7,55 +7,109 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, fbDataFac
    fbDataFactory.getAllUserLists()
    .then( (listData) => {
     $scope.lists = Object.values(listData.data); //<----get all lists for a user
-    console.log("listData", $scope.lists);
-    // for( let key in  $scope.lists)
-    //     listIdArr.push($scope.lists[key].list_id)//<---- put all ids in an array
-    // console.log("listIdArr", listIdArr)
-   // return listIdArr;
-   // $scope.selectedList = "";
-   // console.log("$scope.selected", $scope.selectedList);
-   })
-   // .then( (listIdArr) => {
-   //    listIdArr.forEach( (listId) => {
-   //       fbDataFactory.getAllListItems(listId)// <---- get items for each list
-   //      .then( (recievedItems) => {
-   //          // console.log("recievedItems???", recievedItems.data);
-   //          responseArr.push(recievedItems.data)
-   //    console.log("recievedItems",  responseArr);  
-   //         })
-   //    })
-   // })
+    // console.log("listData", $scope.lists);
+   });
 
    $scope.update = (item) => {
       // $scope.selectedListItem = $scope.selectedList;
-      console.log("$scope.selectedList", item.list_id); 
-      $scope.selectedList = item.list_id
+      // console.log("$scope.selectedList", item); 
+      $scope.selectedList = item.selected;
    }
    let selectedItemArr = [];
 
    $scope.getSelectedItems = (item) => {
-    if(item)
-    selectedItemArr.push(item.name);
+    if(selectedItemArr.indexOf(item.name) == -1)
+        selectedItemArr.push(item.name);
+    else {
+        let index = selectedItemArr.indexOf(item.name)
+        selectedItemArr.splice(index, 1)
+    }
+      // console.log("itemArr", selectedItemArr);
+      // console.log("item", item);
    }
 
    $scope.addToShoppingList = () => {
-      
-    let arr = selectedItemArr.map( (item, i) => {
-      let tempObj = {
-        item_name: item,
-        list_id : $scope.selectedList
-      }; 
-      fbDataFactory.addItemToFB(tempObj)
-      .then( (dataItem) => {
-        console.log("data after adding item", dataItem.data);
+     if($scope.selectedList == ( "" || null || undefined))
+     {
+        var alertPopup = $ionicPopup.alert({
+        title: 'You have not selected a list',
+        template: 'Please select a list you would like to add item to'
+        });
+        alertPopup.then(function(res) {
+         console.log('They better select a list');
+        });
+     }
+     else 
+     {
+
+      let arr = selectedItemArr.map( (item, i) => {
+        let tempObj = {
+          item_name: item,
+          list_id : $scope.selectedList.list_id
+        }; 
+        fbDataFactory.addItemToFB(tempObj)
+        .then( (dataItem) => {
+          console.log("data after adding item", dataItem.data);
+        $window.location.href = `${ActualURL}/shopping-list/${$scope.selectedList.list_id}`;
+        $window.location.reload();
+        })
       })
-    })
-
-
+     }
    }
 
     RecipeFactory.getSingleRecipeById(RecipeId)
     .then( (dataRecipe) => {
         $scope.items = dataRecipe.data.extendedIngredients;
       });
+
+  $scope.showPopup = function() {
+  $scope.data = {};
+
+  // An elaborate, custom popup
+  var myPopup = $ionicPopup.show({
+    template: '<input type="text" ng-model="data.newList">',
+    title: 'Enter New List Name',
+    scope: $scope,
+    buttons: [
+      { text: 'Cancel' },
+      {
+        text: '<b>Save</b>',
+        type: 'button-positive',
+        onTap: function(e) {
+          if (!$scope.data.newList) {
+            //don't allow the user to close unless he enters wifi password
+            e.preventDefault();
+          } else {
+            return $scope.data.newList;
+          }
+        }
+      }
+    ]
+  });
+
+  myPopup.then(function(res) {
+    let currentUser = null;
+    let listObj = {};
+    UserFactory.isAuthenticated()
+    .then( (user) => {
+    currentUser = UserFactory.getUser(); 
+    console.log("currentUser", currentUser);
+     listObj = {
+        listName: res,
+        uid : currentUser
+    }
+
+
+        console.log("listObj", listObj);
+        fbDataFactory.addNewListToFB(listObj)
+        .then( (data) => {
+            $window.location.reload();
+
+        })
+        .catch( (err) => {
+            console.log("err",err );
+        });
+    })
+  });
+}
 });

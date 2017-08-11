@@ -50,8 +50,14 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $
         fbDataFactory.addItemToFB(tempObj)
         .then( (dataItem) => {
           console.log("data after adding item", dataItem.data);
-        $window.location.href = `${ActualURL}/shopping-list/${$scope.selectedList.list_id}`;
-        $window.location.reload();
+          let url = ($window.location.href).split("/");
+          url.pop();
+          url.pop();
+          url = url.join('/');
+          // console.log("$window.location.href", $window.location.href);
+         console.log("url", url);
+         $window.location.href = `${url}shopping-list/${$scope.selectedList.list_id}`;
+        $window.location.reload()
         })
       })
      }

@@ -1,4 +1,4 @@
-smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $window,$location, $ionicPopup, fbDataFactory, RecipeFactory, UserFactory) {
+smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $window,$location, $ionicPopup, fbDataFactory, RecipeFactory, UserFactory, ActualURL) {
     
     let RecipeId = $stateParams.recipeId;
     console.log("RecipeId",RecipeId );
@@ -7,19 +7,25 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $
    fbDataFactory.getAllUserLists()
    .then( (listData) => {
     $scope.lists = Object.values(listData.data); //<----get all lists for a user
-    console.log("listData", $scope.lists);
+    // console.log("listData", $scope.lists);
    });
 
    $scope.update = (item) => {
       // $scope.selectedListItem = $scope.selectedList;
-      console.log("$scope.selectedList", item); 
+      // console.log("$scope.selectedList", item); 
       $scope.selectedList = item.selected;
    }
    let selectedItemArr = [];
 
    $scope.getSelectedItems = (item) => {
-    if(item)
-    selectedItemArr.push(item.name);
+    if(selectedItemArr.indexOf(item.name) == -1)
+        selectedItemArr.push(item.name);
+    else {
+        let index = selectedItemArr.indexOf(item.name)
+        selectedItemArr.splice(index, 1)
+    }
+      // console.log("itemArr", selectedItemArr);
+      // console.log("item", item);
    }
 
    $scope.addToShoppingList = () => {
@@ -44,11 +50,8 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $
         fbDataFactory.addItemToFB(tempObj)
         .then( (dataItem) => {
           console.log("data after adding item", dataItem.data);
-        // $state.go(`/shopping-list/{shoppingListId :${$scope.selectedList} }`);
-         let x = "http://localhost:8100/?ionicplatform=android&http://localhost:8100/ionic-lab#";
-         $window.location.href = `${x}/shopping-list/${$scope.selectedList.list_id}`;
-        $window.location.reload()
-         // console.log("$window.location.href", $window.location.href);
+        $window.location.href = `${ActualURL}/shopping-list/${$scope.selectedList.list_id}`;
+        $window.location.reload();
         })
       })
      }

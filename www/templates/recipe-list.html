@@ -1,7 +1,9 @@
-<ion-view title="Recipes" >
+<ion-view title="Recipes" padding="true">
 <ion-content padding="true" class="has-header">
 <form>
-<input type="text" name="search" placeholder="search.." ng-model="searchText" ng-keyPress="searchedRecipe($event)" />
+<input type="text" name="search" placeholder="search.." ng-model="searchText" />
+<button ion-button icon-only ng-click="searchedRecipe(searchText)">search</button>
+
 
 <ion-card ng-repeat="recipe in recipes" ui-sref="singleRecipe({recipeId:{{recipe.id}}})">
   <div class="list card">
@@ -13,4 +15,8 @@
 </ion-card>
 </form>
 </ion-content>
+
+<!-- <ion-footer-bar class="bar-assertive">
+    
+</ion-footer-bar> -->
 </ion-view>

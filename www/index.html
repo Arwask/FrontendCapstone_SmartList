@@ -20,12 +20,12 @@
     <link href="css/style.css" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
+    <link href="css/ionic.app.css" rel="stylesheet"> -->
+    <link href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+   
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
     <!-- <script src="../node_modules/firebase/firebase.js"></script> -->
@@ -41,11 +41,13 @@
         <h1 class="title">Smart List</h1>
         <button ui-sref="mainOptions" class="button right">Home</button>
       </ion-header-bar>
-      <ion-content>
         <ion-nav-view></ion-nav-view>
+      <ion-content>
         <ion-nav-bar>
         </ion-nav-bar>
       </ion-content>
+      <!-- <ion-footer-bar class="bar-assertive"> -->
+
     </ion-pane>
 
     <!-- Creds -->

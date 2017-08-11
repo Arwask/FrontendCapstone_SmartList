@@ -14,10 +14,18 @@ $scope.register = () => {
             console.log("New User:", userData);
             UserFactory.loginUser($scope.registerInfo)
             .then( (data) => {
-                $window.location.href = `${ActualURL}/register`;
+                $window.location.href = `${ActualURL}/main-options`;
             });
 
         });
     };
 
+$scope.loginWithGoogle = () => {
+
+    UserFactory.logUserWithGoogle()
+    .then( (userData) => {
+        // console.log("userData", userData.data);
+        // $window.location.href = `${ActualURL}/main-options`;
+    })
+}
 });

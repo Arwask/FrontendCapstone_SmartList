@@ -1,4 +1,6 @@
-smartApp.controller('RecipeBookCtrl', function($scope, $state, $window, RecipeFactory, fbDataFactory, UserFactory, RecipeFactory) {
+'use strict';
+
+smartApp.controller('RecipeBookCtrl', function($scope, $state, $window, fbDataFactory, UserFactory, RecipeFactory) {
 
         // $route.reload();
         // $window.location.reload();
@@ -14,7 +16,7 @@ smartApp.controller('RecipeBookCtrl', function($scope, $state, $window, RecipeFa
             // call the api using user's recipe_id and give that data to scope
             for(let key in userRecipes) {
                 idArray.push(userRecipes[key].recipe_id);
-            };
+            }
             console.log("idArray", idArray);
 
             RecipeFactory.getRecipeById(idArray)
@@ -27,7 +29,7 @@ smartApp.controller('RecipeBookCtrl', function($scope, $state, $window, RecipeFa
             })
             .catch( (err) => {
                 console.log("err",err );
-            })
-        })
-         })   
+            });
+        });
+         });   
 });

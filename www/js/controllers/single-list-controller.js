@@ -1,3 +1,5 @@
+'use strict';
+
 smartApp.controller('SingleListCtrl', function($scope, $stateParams,$ionicPopup, $window, fbDataFactory) {
     
     let listId = $stateParams.shoppingListId;
@@ -42,8 +44,8 @@ smartApp.controller('SingleListCtrl', function($scope, $stateParams,$ionicPopup,
         fbDataFactory.EditItemInFB(editedItem)
         .then( (recievedData) => {
             console.log("recievedData", recievedData);
-        })
-    })
+        });
+    });
 };
 
 $scope.addNewItemPopup = () => {
@@ -69,10 +71,10 @@ $scope.addNewItemPopup = () => {
     });
     addPopup.then( (newItem) => {
 
-       itemObj = {
+       let itemObj = {
           item_name: newItem,
           list_id : listId
-      }
+      };
           console.log("itemObj", itemObj);
           fbDataFactory.addNewItemToFB(itemObj)
           .then( (data) => {
@@ -82,7 +84,7 @@ $scope.addNewItemPopup = () => {
           .catch( (err) => {
               console.log("err",err );
           });
-      })
+      });
 };
 
   //rearrange items
@@ -98,7 +100,7 @@ $scope.addNewItemPopup = () => {
     fbDataFactory.deleteOneItemFromFB(item.item_id)
     .then( (data) => {
         console.log("data", data);
-    })
+    });
   };
 
 });

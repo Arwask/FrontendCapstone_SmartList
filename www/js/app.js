@@ -1,3 +1,5 @@
+'use strict';
+
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -23,28 +25,46 @@ smartApp.run(function($ionicPlatform) {
   });
 });
 smartApp.constant('FirebaseUrl', 'https://smart-list-d50e4.firebaseio.com/');
-smartApp.constant('ActualURL',  "http://localhost:8100/?ionicplatform=android&http://localhost:8100/ionic-lab#")
+
+smartApp.controller('goBack', function($scope,$q, $ionicHistory, $ionicSideMenuDelegate) {
+
+  $scope.myGoBack = function() {
+    $ionicHistory.goBack();
+  };
+
+  $scope.toggleRight = function() {
+    $ionicSideMenuDelegate.toggleRight();
+  };
+
+})
 
 smartApp.config(function($stateProvider, $urlRouterProvider) {
 
-// let isUser = () => {
-//       firebase.auth().onAuthStateChanged( (user) => {
-//         if(user) {
-//           currentUser = user.uid;
-//           return true;
-//         }
-//         else { //on logout we need to set it back to null.
-//           currentUser = null;
-//           return false;
-//         }
-//       });
-// }
   $stateProvider
   .state('index', {
     url: '/',
     // abstract: true,
-    templateUrl: '../templates/home.html',
-    controller: 'HomeCtrl'
+    templateUrl: '../templates/info-sliders.html',
+    controller: 'SliderCtrl'
+  })
+  .state('login', {
+    url: '/login',
+    templateUrl: '../templates/login.html',
+    controller: 'LoginCtrl'
+  })
+  .state('navPartial', {
+    url: '/nav',
+    templateUrl: '../templates/nav-partial.html',
+    controller: 'goBack'
+  })
+  .state('sideMenuPartial', {
+    url: '/side-menu',
+    templateUrl: '../templates/side-menu-partial.html',
+    controller: 'sideMenuCtrl'
+  })
+  .state('footerPartial', {
+    url: '/nav',
+    templateUrl: '../templates/footer-partial.html'
   })
   .state('register', {
     url: '/register',
@@ -59,7 +79,6 @@ smartApp.config(function($stateProvider, $urlRouterProvider) {
   .state('recipeBook', {
     url: '/recipes/book',
     controller: 'RecipeBookCtrl',
-    // cache: false,
     templateUrl: '../templates/recipe-book.html'
   })
   .state('favSingleRecipe', {
@@ -69,7 +88,6 @@ smartApp.config(function($stateProvider, $urlRouterProvider) {
   })
   .state('mainOptions', {
     url: '/main-options',
-    controller: 'MainOptionCtrl',
     templateUrl: '../templates/main-options.html'
   })
   .state('scan', {

@@ -1,0 +1,19 @@
+<ion-header-bar class="bar-stable">
+    
+  <ion-nav-bar class="stable">
+    <ion-nav-back-button>
+      <button class="button button-clear" ng-click="myGoBack()" nav-direction="back">
+        <i class="icon ion-ios-arrow-back"></i>
+      </button>
+    </ion-nav-back-button>
+    <ion-nav-buttons side="right">
+      <button class="button button-clear" ng-init="data.showMenu = false" ng-click="data.showMenu = !data.showMenu" nav-direction="forward">
+        <i class="icon ion-ios-gear"></i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+<div ng-include ng-show="data.showMenu" src="'templates/side-menu-partial.html'"></div>
+
+
+</ion-header-bar>

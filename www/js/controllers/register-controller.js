@@ -1,4 +1,6 @@
-smartApp.controller('RegisterCtrl', function($scope, $http, $q, $window, UserFactory, ActualURL) {
+'use strict';
+
+smartApp.controller('RegisterCtrl', function($scope, $http, $q, $window, UserFactory) {
 
 $scope.registerInfo = {
     email: "",
@@ -14,7 +16,12 @@ $scope.register = () => {
             console.log("New User:", userData);
             UserFactory.loginUser($scope.registerInfo)
             .then( (data) => {
-                $window.location.href = `${ActualURL}/main-options`;
+                let url = ($window.location.href).split("/");
+                  url.pop();
+                  url = url.join('/');
+                  // console.log("$window.location.href", $window.location.href);
+                 console.log("url", url);
+                 $window.location.href = `${url}main-options`;
             });
 
         });
@@ -24,8 +31,12 @@ $scope.loginWithGoogle = () => {
 
     UserFactory.logUserWithGoogle()
     .then( (userData) => {
-        // console.log("userData", userData.data);
-        // $window.location.href = `${ActualURL}/main-options`;
-    })
-}
+        let url = ($window.location.href).split("/");
+        url.pop();
+        url = url.join('/');
+        console.log("$window.location.href", $window.location.href);
+        console.log("url", url);
+        $window.location.href = `${url}main-options`;
+    });
+};
 });

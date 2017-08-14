@@ -1,3 +1,5 @@
+<div ng-include src="'templates/nav-partial.html'"></div>
+
 <ion-view title="Shopping list">
   <ion-content padding="true" class="has-header">
     
@@ -10,6 +12,7 @@
       <button ng-click="showPopup()">
           Add
       </button>
+      <button ng-click="scanBarcode()">Scan</button>
     </div>
   </ion-header-bar>
       
@@ -29,5 +32,7 @@
   </ion-list>
 
 </ion-content>
-  </ion-content>
+
+<div ng-include src="'templates/footer-partial.html'"></div>
+
 </ion-view>

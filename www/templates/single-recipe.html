@@ -1,14 +1,13 @@
+<div ng-include src="'templates/nav-partial.html'"></div>
+
 <ion-view title="Recipe">
   <ion-content padding="true" class="has-header">
     <div class="button-bar">
- <!--      <button class="button button-positive button-block" ng-click="addToRecipeBook()">save</button>
-      <button class="button button-positive button-block" ui-sref="selector">make list</button>
-      <button class="button button-positive button-block" ui-sref="recipesView">cancel</button> -->
+
     </div>
     <div class="list card">
       <ion-item>
       <button class="button" ng-click="saveRecipe()">save</button>
-      <!-- TODO : make a pop-up that alerts user that the recipe is saved. -->
       <button class="button" ui-sref="selector({recipeId : recipes.id})">Listify</button>
       <button class="button" ui-sref="recipesView">cancel</button>
         
@@ -29,4 +28,7 @@
       </div>
     </div>
   </ion-content>
+
+<div ng-include src="'templates/footer-partial.html'"></div>
+
 </ion-view>

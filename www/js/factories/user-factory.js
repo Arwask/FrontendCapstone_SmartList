@@ -1,3 +1,5 @@
+'use strict';
+
 smartApp.factory('UserFactory', function($http, $q, FBCreds) {
     
 
@@ -58,10 +60,10 @@ smartApp.factory('UserFactory', function($http, $q, FBCreds) {
       console.log("error loggin in", err.message);
       });
     });
-  }
+  };
   let getUser = () => {
     return currentUser;
-  }
+  };
 
   return {createUser, loginUser, getUser, isAuthenticated, logUserWithGoogle};
-})
+});

@@ -1,4 +1,6 @@
-smartApp.controller('HomeCtrl', function($scope, UserFactory, $window) {
+'use strict';
+
+smartApp.controller('LoginCtrl', function($scope, UserFactory, $window) {
     
     $scope.loginInfo = {
         email: "",

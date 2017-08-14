@@ -1,4 +1,6 @@
-smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $window,$location, $ionicPopup, fbDataFactory, RecipeFactory, UserFactory, ActualURL) {
+'use strict';
+
+smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $window,$location, $ionicPopup, fbDataFactory, RecipeFactory, UserFactory) {
     
     let RecipeId = $stateParams.recipeId;
     console.log("RecipeId",RecipeId );
@@ -14,19 +16,19 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $
       // $scope.selectedListItem = $scope.selectedList;
       // console.log("$scope.selectedList", item); 
       $scope.selectedList = item.selected;
-   }
+   };
    let selectedItemArr = [];
 
    $scope.getSelectedItems = (item) => {
     if(selectedItemArr.indexOf(item.name) == -1)
         selectedItemArr.push(item.name);
     else {
-        let index = selectedItemArr.indexOf(item.name)
-        selectedItemArr.splice(index, 1)
+        let index = selectedItemArr.indexOf(item.name);
+        selectedItemArr.splice(index, 1);
     }
       // console.log("itemArr", selectedItemArr);
       // console.log("item", item);
-   }
+   };
 
    $scope.addToShoppingList = () => {
      if($scope.selectedList == ( "" || null || undefined))
@@ -57,11 +59,11 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $
           // console.log("$window.location.href", $window.location.href);
          console.log("url", url);
          $window.location.href = `${url}shopping-list/${$scope.selectedList.list_id}`;
-        $window.location.reload()
-        })
-      })
+        $window.location.reload();
+        });
+      });
      }
-   }
+   };
 
     RecipeFactory.getSingleRecipeById(RecipeId)
     .then( (dataRecipe) => {
@@ -103,7 +105,7 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $
      listObj = {
         listName: res,
         uid : currentUser
-    }
+    };
 
 
         console.log("listObj", listObj);
@@ -115,7 +117,7 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $
         .catch( (err) => {
             console.log("err",err );
         });
-    })
+    });
   });
-}
+};
 });

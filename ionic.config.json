@@ -1,6 +1,6 @@
 {
   "name": "capstone_smartlist",
-  "app_id": "1c83ae46",
+  "app_id": "3ffb774c",
   "type": "ionic1",
   "watchPatterns": [
     "scss/**/*"

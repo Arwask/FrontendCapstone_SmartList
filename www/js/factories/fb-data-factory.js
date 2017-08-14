@@ -1,3 +1,5 @@
+'use strict';
+
 smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
 
     let addRecipeToFirebase = (recipeObj) => {
@@ -10,8 +12,8 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
             .catch( (err) => {
                 reject(err);
             });
-        })
-    }
+        });
+    };
 
     let getUserRecipes = (currentUser) => {
         return $q( (resolve, reject) => {
@@ -28,8 +30,8 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
             .catch( (err) => {
                 reject(err);
             });
-        })
-    }
+        });
+    };
 
     
 //get the fbkey of the selected user's recipe's key.
@@ -48,21 +50,21 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
                             // return key;
                         }
                     }
-                })
+                });
             }) 
             .catch( (err) => {
                 console.log("err", err);
             });  
             
-        })
-    }
+        });
+    };
 
     let keyOfRecipeToDelete;
     let deleteRecipeFromFB = (currentRecipeId) => {
       return $q( (resolve, reject) => {
        keyOfRecipeToDelete = getUserRecipeKey(currentRecipeId)
        .then( (keyOfRecipeToDelete) => {
-               return $http.delete(`${FirebaseUrl}recipes/${keyOfRecipeToDelete}.json`)
+               return $http.delete(`${FirebaseUrl}recipes/${keyOfRecipeToDelete}.json`);
         })
         .then( (response) => {
             console.log("response????", response);
@@ -72,8 +74,8 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
             reject(err);
         });
        // console.log("keyOfRecipeToDelete",keyOfRecipeToDelete );
-       })
-    }
+       });
+    };
     
     //get userlists which calls a function
     let getAllUserLists = () => {
@@ -81,15 +83,15 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
             UserFactory.isAuthenticated()
             .then( (user) => {
                 let currentUser = UserFactory.getUser(); 
-                // console.log("currentUser", currentUser);
+                console.log("currentUser", currentUser);
                  getLists(currentUser).
                  then( (allLists) => {
                     // console.log("allLists", allLists);
                     resolve(allLists);
-                 })
+                 });
             });
         });
-    }
+    };
 
     // get a user's all lists
     let getLists = (currentUser) => {
@@ -101,9 +103,9 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
                     response.data[key].list_id = key;
                 // console.log("listData", response.data);
                 resolve(response);
-            })
-        })
-    }
+            });
+        });
+    };
 
     // Add new list to FB
     let addNewListToFB = (listObj) => {
@@ -116,8 +118,8 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
             .catch( (err) => {
                 reject(err);
             });
-        })
-    }
+        });
+    };
 
     let getAllListItems = (listId) => {
             return $q( (resolve,reject) => {
@@ -127,9 +129,9 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
                         response.data[key].item_id = key; //save fb key to the retrieved obj
                     }                       
                         resolve(response.data);
-                })
-            })
-    }
+                });
+            });
+    };
 
     let addItemToFB = (itemObj) => {
         return $q( (resolve, reject) => {
@@ -141,8 +143,8 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
             .catch( (err) => {
                 reject(err);
             });
-        })
-    }
+        });
+    };
 
     let deleteOneItemFromFB = (itemId) => {
         return $q( (resolve, reject) => {
@@ -153,8 +155,8 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
             .catch( (err) => {
                 reject(err);
             });
-        })
-    }
+        });
+    };
 
     let deleteOneListFromFB = (listId) => {
         return $q( (resolve, reject) => {
@@ -165,13 +167,13 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
                 .then( (someData) => {
                     console.log("someData", someData);
                     // resolve(someData);
-                })
+                });
             })
             .catch( (err) => {
                 reject(err);
             });
         });
-    }
+    };
 
     let deleteAllItemsOfAList = (listId) => {
      return $q( (resolve, reject) => {   
@@ -181,14 +183,14 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
                 deleteOneItemFromFB(item).
                 then( (uselessData) => {
                     console.log("uselessData", uselessData);
-                })
-            })
+                });
+            });
         })
         .catch( (e) => {
             console.log("error", e);
         });
     });
-    }
+    };
 
     let EditListInFB = (listObj) => {
         return $q( (resolve, reject) => {
@@ -202,8 +204,8 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
             .catch( (err) => {
                 console.log("err", err);
             });
-        })
-    }
+        });
+    };
 
     let EditItemInFB = (itemObj) => {
         return $q( (resolve, reject) => {
@@ -216,8 +218,8 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
             .catch( (err) => {
                 console.log("err", err);
             });
-        })
-    }
+        });
+    };
 
     let addNewItemToFB = (itemObj) => {
         return $q( (resolve, reject) => {
@@ -229,8 +231,8 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
             .catch( (err) => {
                 reject(err);
             });
-        })
-    }
+        });
+    };
 return { 
     addRecipeToFirebase, 
     getUserRecipes, 

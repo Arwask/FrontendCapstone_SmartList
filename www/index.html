@@ -34,20 +34,13 @@
     <script src="js/app.js"></script>
     
   </head>
-  <body ng-app="smartApp" class="platform-android platform-ios platform-browser">
+  <body ng-app="smartApp" class="platform-android platform-ios platform-browser" ng-controller='goBack'>
 
     <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Smart List</h1>
-        <button ui-sref="mainOptions" class="button right">Home</button>
-      </ion-header-bar>
-        <ion-nav-view></ion-nav-view>
-      <ion-content>
-        <ion-nav-bar>
-        </ion-nav-bar>
-      </ion-content>
-      <!-- <ion-footer-bar class="bar-assertive"> -->
 
+     <ion-nav-view>  
+      
+      </ion-nav-view>
     </ion-pane>
 
     <!-- Creds -->
@@ -67,10 +60,11 @@
 
     <!-- Controller -->
     <script src="./js/controllers/register-controller.js" type="text/javascript"></script>
-    <script src="./js/controllers/home-controller.js" type="text/javascript"></script>
+    <script src="./js/controllers/login-controller.js" type="text/javascript"></script>
+    <script src="./js/controllers/slider-controller.js" type="text/javascript"></script>
     <script src="./js/controllers/recipe-view-controller.js" type="text/javascript"></script>
     <script src="./js/controllers/recipe-book-controller.js" type="text/javascript"></script>
-    <script src="./js/controllers/main-option-controller.js" type="text/javascript"></script>
+    <script src="./js/controllers/side-menu-controller.js" type="text/javascript"></script>
     <script src="./js/controllers/scan-controller.js" type="text/javascript"></script>
     <script src="./js/controllers/selector-controller.js" type="text/javascript"></script>
     <script src="./js/controllers/shopping-list-controller.js" type="text/javascript"></script>

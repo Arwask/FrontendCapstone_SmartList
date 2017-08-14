@@ -26,17 +26,7 @@ smartApp.run(function($ionicPlatform) {
 });
 smartApp.constant('FirebaseUrl', 'https://smart-list-d50e4.firebaseio.com/');
 
-smartApp.controller('goBack', function($scope,$q, $ionicHistory, $ionicSideMenuDelegate) {
 
-  $scope.myGoBack = function() {
-    $ionicHistory.goBack();
-  };
-
-  $scope.toggleRight = function() {
-    $ionicSideMenuDelegate.toggleRight();
-  };
-
-})
 
 smartApp.config(function($stateProvider, $urlRouterProvider) {
 
@@ -56,11 +46,6 @@ smartApp.config(function($stateProvider, $urlRouterProvider) {
     url: '/nav',
     templateUrl: '../templates/nav-partial.html',
     controller: 'goBack'
-  })
-  .state('sideMenuPartial', {
-    url: '/side-menu',
-    templateUrl: '../templates/side-menu-partial.html',
-    controller: 'sideMenuCtrl'
   })
   .state('footerPartial', {
     url: '/nav',

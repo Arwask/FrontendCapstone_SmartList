@@ -65,5 +65,13 @@ smartApp.factory('UserFactory', function($http, $q, FBCreds) {
     return currentUser;
   };
 
-  return {createUser, loginUser, getUser, isAuthenticated, logUserWithGoogle};
+
+  let logout = () => {
+    return firebase.auth().signOut()
+    .catch( (err) => {
+      console.log("Error logging out", err.message);
+    });
+  };
+
+  return {createUser, loginUser, getUser, isAuthenticated, logUserWithGoogle, logout};
 });

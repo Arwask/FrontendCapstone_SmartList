@@ -1,4 +1,4 @@
-smartApp.controller('goBack', function($scope,$q, $ionicHistory, $ionicSideMenuDelegate) {
+smartApp.controller('goBack', function($scope,$q, $ionicHistory, $window, $ionicSideMenuDelegate, UserFactory) {
 
   $scope.myGoBack = function() {
     $ionicHistory.goBack();
@@ -8,5 +8,13 @@ smartApp.controller('goBack', function($scope,$q, $ionicHistory, $ionicSideMenuD
     console.log("Something clicked?????");
       $ionicSideMenuDelegate.toggleRight();
    };
+
+   $scope.logOut = () => {
+    UserFactory.logout()
+    .then( (data) => {
+        // alert('successfully logged out');
+        $window.location.href = "/";
+    });
+   }
 
 })

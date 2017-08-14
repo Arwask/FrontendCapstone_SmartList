@@ -50,13 +50,19 @@
         
         <ion-side-menu side="right">
           <ion-header-bar class="bar-assertive">
-            <h1 class="title">Left Menu</h1>
+            <h1 class="title">Options</h1>
           </ion-header-bar>
           <ion-content>
-            <ul class="list">
-              <a ng-click="toggleright()" class="item">Check-in</a>
-              <a ng-click="toggleright()" class="item">Attendees</a>
-            </ul>
+            <ion-list>
+              <ion-item class="item-icon-left" ui-sref="mainOptions" menu-close="">
+                <i class="icon ion-android-home"></i>Home</ion-item>
+              <ion-item class="item-icon-left" ui-sref="recipesView" menu-close="">
+                <i class="icon ion-search"></i>Browse Recipe</ion-item>
+              <ion-item class="item-icon-left" ui-sref="shoppingList" menu-close="">
+                <i class="icon ion-ios-list-outline"></i>Shopping Lists</ion-item>
+              <ion-item class="item-icon-left" ng-click="logOut()">
+                <i class="icon ion-log-out"></i>Logout</ion-item>
+            </ion-list>
           </ion-content>
         </ion-side-menu>
         

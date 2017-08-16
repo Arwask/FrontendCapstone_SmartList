@@ -18,6 +18,7 @@
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet"> -->
@@ -52,7 +53,7 @@
           <ion-header-bar class="bar-assertive">
             <h1 class="title">Options</h1>
           </ion-header-bar>
-          <ion-content>
+          <ion-content class="bar-assertive">
             <ion-list>
               <ion-item class="item-icon-left" ui-sref="mainOptions" menu-close="">
                 <i class="icon ion-android-home"></i>Home</ion-item>
@@ -60,6 +61,8 @@
                 <i class="icon ion-search"></i>Browse Recipe</ion-item>
               <ion-item class="item-icon-left" ui-sref="shoppingList" menu-close="">
                 <i class="icon ion-ios-list-outline"></i>Shopping Lists</ion-item>
+                <ion-item class="item-icon-left" ui-sref="recipeBook" menu-close="">
+                <i class="icon ion-ios-heart"></i>Recipe Book</ion-item>
               <ion-item class="item-icon-left" ng-click="logOut()">
                 <i class="icon ion-log-out"></i>Logout</ion-item>
             </ion-list>

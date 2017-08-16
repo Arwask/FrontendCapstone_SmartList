@@ -2,22 +2,22 @@
 
 <ion-view title="Shopping list">
   <ion-content padding="true" class="has-header">
-    
-    <ion-header-bar class="bar-positive">
+   <!--  <div class="spacer" style="width: 300px; height: 38px;"></div> -->
+  <ion-header-bar class="bar-positive">
     <div class="buttons">
       <button class="button button-icon icon ion-ios-minus-outline"
         ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
     </div>
     <div class="buttons">
-      <button ng-click="showPopup()">
-          Add
+      <button ng-click="addNewItemPopup()" class="button button-clear"><i class="icon ion-android-add"></i></button>
+      <button class="button" ng-click="data.showDelete = false; data.showReorder = !data.showReorder">
+          Reorder
       </button>
-      <button ng-click="scanBarcode()">Scan</button>
     </div>
   </ion-header-bar>
       
   <ion-list show-delete="data.showDelete">
-
+    <div class="spacer" style="width: 300px; height: 38px;"></div>
     <ion-item ng-repeat="list in lists" item="list" ui-sref="singleListView({shoppingListId : list.list_id})" class="item-remove-animate">
       {{ list.listName }}
       <ion-delete-button class="ion-minus-circled" 

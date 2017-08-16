@@ -1,23 +1,35 @@
 <div ng-include src="'templates/nav-partial.html'"></div>
 
-<ion-view title="Recipes" padding="true">
-<ion-content padding="true" class="has-header">
+<ion-view title="Recipes">
+<ion-content class="has-header">
 <form>
-<input type="text" name="search" placeholder="search.." ng-model="searchText" />
-<button ion-button icon-only ng-click="searchedRecipe(searchText)">search</button>
+<div>
+<!-- <input type="text" name="search" placeholder="search.." ng-model="searchText" /> -->
+<div class="bar bar-header item-input-inset">
+        <label class="item-input-wrapper textbox-search">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="search" placeholder="Search" name="search" ng-model="searchText">
+        </label>
+
+<button class="button" ng-click="searchedRecipe(searchText)">
+    <i class="icon ion-search"></i>
+</button>
+</div>
+</form>
+    
+</div>
 
 
 <ion-card ng-repeat="recipe in recipes" ui-sref="singleRecipe({recipeId:{{recipe.id}}})">
-  <div class="list card">
-      <div style="margin: 0px; line-height: 0px; background-color: rgb(232, 235, 239); text-align: center;">
-        <img src="{{recipe.image}}" style="width: 100%;">
-        <h2>{{recipe.title}}</h2>
+  <div class="list card singleRecipeCard">
+      <div class="singleRecipeDiv">
+        <img src="{{recipe.image}}">
+        <h6>{{recipe.title}}</h6>
       </div>
   </div>
 </ion-card>
-</form>
 </ion-content>
 
-<div ng-include src="'templates/footer-partial.html'"></div>
+<!-- <div ng-include src="'templates/footer-partial.html'"></div> -->
 
 </ion-view>

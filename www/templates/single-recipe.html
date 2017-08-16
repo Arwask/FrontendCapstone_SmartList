@@ -5,30 +5,33 @@
     <div class="button-bar">
 
     </div>
-    <div class="list card">
-      <ion-item>
-      <button class="button" ng-click="saveRecipe()">save</button>
-      <button class="button" ui-sref="selector({recipeId : recipes.id})">Listify</button>
-      <button class="button" ui-sref="recipesView">cancel</button>
+    <div class="list card singleRecipeMainDiv">
+      <ion-item class="optionsOnSingleRecipeView">
+      <button class="button button-clear" ng-click="saveRecipe()"><i class="icon ion-heart" style="color: red;"></i></button>
+      <button class="button button-clear" ui-sref="selector({recipeId : recipes.id})"><i class="icon ion-ios-list" style="color: purple; "></i></button>
+      <button class="button button-clear" ui-sref="recipesView"><i class="icon ion-android-cancel" style="color: red;"></i></button>
         
       </ion-item>
         <h2>{{recipes.title}}</h2>
-      <div style="margin: 0px; line-height: 0px; background-color: rgb(232, 235, 239); text-align: center;">
+      <div>
         <img src="{{recipes.image}}" style="width: 100%;">
       </div>
       <div>
       <h2>Ingredients:</h2>
-        <ol ng-repeat="item in recipes.extendedIngredients">
+        <ul ng-repeat="item in recipes.extendedIngredients">
           <li>{{item.name}}</li>
-        </ol>
+        </ul>
       </div>
       <div>
-      <h2>Method</h2>
-        <p>{{recipes.instructions}}</p>
+      <h2>Method:</h2>
+        <!-- <p>{{recipes.instructions}}</p> -->
+        <ul ng-repeat="each in recipes.analyzedInstructions[0].steps">
+          <li><b>Step:{{each.number}}</b><br>{{each.step}}</li>
+        </ul>
       </div>
     </div>
   </ion-content>
 
-<div ng-include src="'templates/footer-partial.html'"></div>
+<!-- <div ng-include src="'templates/footer-partial.html'"></div> -->
 
 </ion-view>

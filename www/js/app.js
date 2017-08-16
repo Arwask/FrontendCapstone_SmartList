@@ -35,7 +35,7 @@ smartApp.config(function($stateProvider, $urlRouterProvider) {
     url: '/',
     // abstract: true,
     templateUrl: '../templates/info-sliders.html',
-    controller: 'SliderCtrl'
+    controller: 'LoginCtrl'
   })
   .state('login', {
     url: '/login',

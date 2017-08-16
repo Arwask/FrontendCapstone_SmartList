@@ -1,4 +1,4 @@
-<ion-view view-title="Register">
+<!-- <ion-view view-title="Register">
 
 <ion-header>
   <ion-navbar>
@@ -20,5 +20,26 @@
         <button ng-click= "loginWithGoogle()">Login with google</button>
       </li>
     </ul>
+</ion-content>
+</ion-view> -->
+
+<ion-view hide-nav-bar="true" title="login page" style="background-color:#87E493;" >
+  <ion-content padding="true">
+    <h2 style="color:#000000;text-align:center;">Register</h2>
+    <div>
+      <img src="../img/fruits_veggies.png" style="display: block; width: 100%; height: auto; margin-left: auto; margin-right: auto;">
+    </div>
+    <div class="spacer" style="width: 300px; height: 18px;"></div>
+    <form class="list">
+      <label class="item item-input">
+        <input type="email" placeholder="Email-id" ng-model="registerInfo.email">
+      </label>
+      <label class="item item-input">
+        <input type="password" placeholder="Password" ng-model="registerInfo.password">
+      </label>
+    <button style="color:#2EEF88;" class="button button-light button-block icon ion-android-contacts" ng-click= "register()">Sign Up</button>
+    </form>
+    <h5 style="color:#F6FAF8;font-weight:lighter;text-align:center;">--- OR ---</h5>
+    <a ng-click= "loginWithGoogle()" style="color:#2EEF88;" class="button button-light button-block">Login With Google</a>
 </ion-content>
 </ion-view>

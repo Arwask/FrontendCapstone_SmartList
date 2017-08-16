@@ -1,10 +1,86 @@
 /* Empty. Add your own CSS if you like */
+
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bad Script', cursive;
+}
+
 #imgIcon {
     width: 10%;
     height: 80%;
 }
 
-.recipeCard {
+/*.recipeCard {
     width: 20vh;
     height: 20vh;
+}*/
+
+/***Single Recipe Card***/
+
+.singleRecipeCard {
+    margin: 5% 5%;
+    width: 40%;
+    float: left;
+    max-height: 250px;
+}
+
+.singleRecipeDiv {
+    margin: 0px;
+    line-height: 0px;
+    text-align: center;
+}
+
+.singleRecipeDiv img {
+    width: 100%;
+}
+
+.singleRecipeDiv h6 {
+    height:40px;
+    line-height:20px;
+    overflow:hidden;
+}
+
+.mainOptionDiv {
+    max-width: 50%;
+    border: 0.5px solid lightgray;
+    box-shadow: 5px 5px 3px slategray;
+    /*border-radius: 10px;*/
+    margin: 10px auto;
+}
+
+.mainOptionDiv:active {
+  background-color: #EDF1D1;
+  box-shadow: 0 slategray;
+  transform: translateY(4px);
+}
+
+.mainOptionSubDiv {
+    padding: 5px;
+    text-align: center;
+    height: 150px;
+}
+
+.mainOptionSubDiv img {
+    width: 100%;
+    height: 120px;
+}
+
+.pFrame {
+    border: none;
+    padding: 0;
+    text-align: center;
+}
+
+/***Single Recipe View***/
+
+.optionsOnSingleRecipeView {
+    padding: 0 50px;
+}
+
+.singleRecipeMainDiv {
+    padding: 5px;
+    border: none;
+}
+
+.singleRecipeMainDiv div {
+    padding-bottom: 10px;
 }

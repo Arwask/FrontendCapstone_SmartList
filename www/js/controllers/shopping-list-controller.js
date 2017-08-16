@@ -1,4 +1,6 @@
-smartApp.controller('ShoppingListCtrl', function($scope,$ionicPopup,$window, fbDataFactory, UserFactory) {
+'use strict';
+
+smartApp.controller('ShoppingListCtrl', function($scope,$ionicPopup,$window,  fbDataFactory, UserFactory) {
     
 
     // $scope.scanBarcode = function() {
@@ -10,12 +12,12 @@ smartApp.controller('ShoppingListCtrl', function($scope,$ionicPopup,$window, fbD
     //     })
     //     .catch( (err) => {
     //         console.log("Error", err);
-    //     })
-    // }
+    //     });
+    // };
 
     fbDataFactory.getAllUserLists().
     then( (listData) => {
-        $scope.lists = Object.values(listData.data)
+        $scope.lists = Object.values(listData.data);
         console.log("listData", $scope.lists);
     })
     .catch( (err) => {
@@ -55,8 +57,8 @@ $scope.showEditPopup = function(list) {
         fbDataFactory.EditListInFB(editedList)
         .then( (recievedData) => {
             console.log("recievedData", recievedData);
-        })
-    })
+        });
+    });
 };
 
 
@@ -67,7 +69,7 @@ $scope.onItemDelete = function(list) {
     fbDataFactory.deleteOneListFromFB(list.list_id)
     .then( (data) => {
         console.log("data", data);
-    })
+    });
 };
  
  $scope.showPopup = function() {
@@ -105,7 +107,7 @@ $scope.onItemDelete = function(list) {
      listObj = {
         listName: res,
         uid : currentUser
-    }
+    };
         console.log("listObj", listObj);
         fbDataFactory.addNewListToFB(listObj)
         .then( (data) => {
@@ -115,7 +117,7 @@ $scope.onItemDelete = function(list) {
         .catch( (err) => {
             console.log("err",err );
         });
-    })
+    });
   }); 
-  } 
+  };
 });

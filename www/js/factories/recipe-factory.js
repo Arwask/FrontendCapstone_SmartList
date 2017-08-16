@@ -1,3 +1,5 @@
+'use strict';
+
 smartApp.factory('RecipeFactory', function($q, $http, RecipeCreds) {
 
         // let myRequest = new XMLHttpRequest();
@@ -36,15 +38,15 @@ smartApp.factory('RecipeFactory', function($q, $http, RecipeCreds) {
                 console.log("searchedData",searchedData );
                 resolve(searchedData);
 
-            })
-        })
-    }
+            });
+        });
+    };
 
     let getRecipeById = (idArray) => {
         let recipePromises = [];
         return $q( (resolve, reject) => {
             // working
-            for(i=0;i<idArray.length;i++)
+            for(let i=0;i<idArray.length;i++)
             {
                 console.log("idArray", idArray[i]);
                 $http({
@@ -55,18 +57,18 @@ smartApp.factory('RecipeFactory', function($q, $http, RecipeCreds) {
                     "cache-control": "no-cache"
                   }
                 })
-            .then( (actualData) => {
+                .then( (actualData) => {
                 // console.log("searchedData",actualData );
                 // resolve(actualData.data);
                 recipePromises.push(actualData.data);
                 resolve(recipePromises);
-            })
-            .catch( (err) => {
-                console.log("err",err );
-            });
-        }
-        })
-    }
+                })
+                .catch( (err) => {
+                    console.log("err",err );
+                });     
+            }
+        });
+    };
 
 
     let getSingleRecipeById = (recipeId) => {
@@ -86,8 +88,8 @@ smartApp.factory('RecipeFactory', function($q, $http, RecipeCreds) {
             .catch( (err) => {
                 console.log("err",err );
             });
-        })
-    }
+        });
+    };
 
 return { get10Recipes, searchedRecipes, getRecipeById, getSingleRecipeById };
 });

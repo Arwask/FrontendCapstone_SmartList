@@ -1,12 +1,18 @@
+<div ng-include src="'templates/nav-partial.html'"></div>
+
 <ion-view>
-<ion-content>
+    <!-- <div class="spacer" style="width: 300px; height: 38px;"></div> -->
+<ion-content padding="true" class="has-header">
+
   <ion-header-bar class="bar-positive">
     <div class="buttons">
       <button class="button button-icon icon ion-ios-minus-outline"
         ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
     </div>
     <div class="buttons">
-      <button ng-click="addNewItemPopup()">Add</button>
+      <button ng-click="addNewItemPopup()" class="button button-clear"><i class="icon ion-android-add"></i></button>
+      <button ng-click="scan()" class="button button-clear"><i class="icon ion-ios-barcode-outline"></i></button>
+
       <button class="button" ng-click="data.showDelete = false; data.showReorder = !data.showReorder">
           Reorder
       </button>
@@ -14,13 +20,14 @@
   </ion-header-bar>
       
   <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+    <div class="spacer" style="width: 300px; height: 38px;"></div>
 
     <ion-item ng-repeat="item in items" item="item" class="item-remove-animate">
       {{ item.item_name }}
       <ion-delete-button class="ion-minus-circled" 
                          ng-click="onItemDelete(item)">
       </ion-delete-button>
-      <ion-option-button class="button-assertive" ng-click="editItemPopup(item)">Edit
+      <ion-option-button class="button-balanced" ng-click="editItemPopup(item)"> <i class="icon ion-edit"></i>  
       </ion-option-button>
       <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
 
@@ -29,5 +36,7 @@
   </ion-list>
 
 </ion-content>
+    
+  <div ng-include src="'templates/footer-partial.html'"></div>
       
 </ion-view>

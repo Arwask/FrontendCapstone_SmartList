@@ -1,3 +1,5 @@
+'use strict';
+
 smartApp.controller('RecipeViewCtrl', function($scope, $window,$q, RecipeFactory) {
 
     RecipeFactory.get10Recipes()
@@ -8,7 +10,7 @@ smartApp.controller('RecipeViewCtrl', function($scope, $window,$q, RecipeFactory
     })
     .catch( (err) => {
         console.log("Error",err );
-    })
+    });
 
     // $scope.searchText = "";
     // console.log("$scope.search", $scope.searchText);
@@ -22,17 +24,17 @@ smartApp.controller('RecipeViewCtrl', function($scope, $window,$q, RecipeFactory
                 searchedData.data.forEach( (recipe) => {
                     recipeIdArray.push(recipe.id);
                     console.log("recipeIdArray",recipeIdArray);
-                })
+                });
                 RecipeFactory.getRecipeById(recipeIdArray)  
                 .then( (Recipedata) => {
                     console.log("data", Recipedata);
                 $scope.recipes = Recipedata;
-                })
+                });
 
             })
             .catch( (err) => {
                 console.log("err",err );
             });
-    }
+    };
 
 });

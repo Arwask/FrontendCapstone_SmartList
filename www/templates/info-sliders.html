@@ -1,0 +1,86 @@
+<ion-view title="Page" hide-nav-bar="true">
+ 
+  <ion-content padding="false" class="manual-ios-statusbar-padding" scroll="false">
+    <ion-slides disable-side-menu-drag="" options="{'loop': false}" slider="slider2" delegate-handle="slider2" style="width:100%;height:100%;">
+      <ion-slide-page style="background-color:#7E7ED4;" class="padding">
+        <div style="display:table;width:100%;height:100%;">
+          <div style="display:table-row;">
+            <div style="display:table-cell;vertical-align:middle;">
+              <div style="margin: 0px;text-align: center;">
+                <img src="../../img/fruits_veggies.png">
+              </div>
+              <h3 style="color:#FFFFFF;text-align:center;">App_Name</h3>
+              <div style="text-align:center;" class="show-list-numbers-and-dots">
+                <p style="color:#FCFAFA;">
+                  <strong>Never</strong> forget an important ingredient from your recipe.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-slide-page>
+      <ion-slide-page style="background-color:#8AE996;" class="padding">
+        <div style="display:table;width:100%;height:100%;">
+          <div style="display:table-row;">
+            <div style="display:table-cell;vertical-align:middle;">
+              <div style="margin: 0px; text-align: center;">
+                <img src="../../img/search.png">
+              </div>
+              <h3 style="color:#FFFFFF;text-align:center;">Browse Recipes</h3>
+              <div style="text-align:center;" class="show-list-numbers-and-dots">
+                <p style="color:#FCFAFA;">Explore our wide range of recipes and save them or convert to a shopping list. Just click list option on the recipe.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-slide-page>
+      <ion-slide-page style="background-color:#ECB35E;" class="padding">
+        <div style="display:table;width:100%;height:100%;">
+          <div style="display:table-row;">
+            <div style="display:table-cell;vertical-align:middle;">
+              <div style="margin: 0px; line-height: 250px; background-color: rgb(232, 235, 239); text-align: center;">
+                <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+              </div>
+              <h3 style="color:#FFFFFF;text-align:center;">Shopping lists</h3>
+              <div style="text-align:center;" class="show-list-numbers-and-dots">
+                <p style="color:#FCFAFA;">Access your shopping lists. Add items manually or make list out of recipes you like.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-slide-page>
+      <ion-slide-page style="background-color:#E6E644;" class="padding">
+        <div style="display:table;width:100%;height:100%;">
+          <div style="display:table-row;">
+            <div style="display:table-cell;vertical-align:middle;">
+              <div style="margin: 0px; line-height: 250px; background-color: rgb(232, 235, 239); text-align: center;">
+                <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+              </div>
+              <h3 style="color:#FFFFFF;text-align:center;">Recipe Book</h3>
+              <div style="text-align:center;" class="show-list-numbers-and-dots">
+                <p style="color:#FCFAFA;">Make recipe book from your saved favorite recipes.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-slide-page>
+    <ion-slide-page style="background-color:#EB626F;" class="padding">
+        <h2 style="color:#000000;text-align:center;">SIGN IN</h2>
+    <div>
+      <img src="https://s3.amazonaws.com/ionic-io-static/FfW6ef5PSFeXKnZBYlTW_fruits_veggies.png" style="display: block; width: 100%; height: auto; margin-left: auto; margin-right: auto;">
+    </div>
+    <div class="spacer" style="width: 300px; height: 18px;"></div>
+    <form class="list">
+      <label class="item item-input">
+        <input type="email" placeholder="Email-id" ng-model="loginInfo.email">
+      </label>
+      <label class="item item-input">
+        <input type="password" placeholder="Password" ng-model="loginInfo.password">
+      </label>
+    </form>
+    <button style="color:#EB626F;" class="button button-light button-block icon ion-android-contacts" ng-click="login()" ui-sref="mainOptions">Sign In</button>
+    <h5 style="color:#F6FAF8;font-weight:lighter;text-align:center;">--- OR ---</h5>
+    <a ui-sref="register" style="color:#EB626F;" class="button button-light button-block">Register New</a>
+      </ion-slide-page>
+    </ion-slides>
+  </ion-content>
+</ion-view>

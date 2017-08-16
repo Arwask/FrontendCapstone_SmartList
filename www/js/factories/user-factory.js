@@ -1,3 +1,5 @@
+'use strict';
+
 smartApp.factory('UserFactory', function($http, $q, FBCreds) {
     
 
@@ -58,10 +60,18 @@ smartApp.factory('UserFactory', function($http, $q, FBCreds) {
       console.log("error loggin in", err.message);
       });
     });
-  }
+  };
   let getUser = () => {
     return currentUser;
-  }
+  };
 
-  return {createUser, loginUser, getUser, isAuthenticated, logUserWithGoogle};
-})
+
+  let logout = () => {
+    return firebase.auth().signOut()
+    .catch( (err) => {
+      console.log("Error logging out", err.message);
+    });
+  };
+
+  return {createUser, loginUser, getUser, isAuthenticated, logUserWithGoogle, logout};
+});

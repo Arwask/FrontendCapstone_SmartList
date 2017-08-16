@@ -1,3 +1,5 @@
+'use strict';
+
 smartApp.controller('SingleFavRecipeCtrl', function($scope, $window, $stateParams,$location, fbDataFactory, RecipeFactory) {
     
     let currentRecipeId = $stateParams.recipeId;
@@ -12,7 +14,7 @@ smartApp.controller('SingleFavRecipeCtrl', function($scope, $window, $stateParam
         })
         .catch( (err) => {
             console.log("err", err);
-        })
+        });
     };
 
     RecipeFactory.getSingleRecipeById(currentRecipeId)

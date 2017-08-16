@@ -1,38 +1,29 @@
+<div ng-include src="'templates/nav-partial.html'"></div>
+
 <ion-view title="mainOption">
-<ion-content padding="true">
-<div ui-sref="recipesView">
-    <div style="margin: 10px; background-color: rgb(232, 235, 239); text-align: center;">
-      <img src= "../../../img/recipe.png" style="width: 100%"></img>
+
+
+<ion-content padding="true" class="has-header">
+
+  <div ui-sref="recipesView" class="mainOptionDiv">
+    <div class="mainOptionSubDiv">
+      <img src= "../../../img/recipe.png"></img>
+      <p class="mainOptionP">Browse Recipes</p>
     </div>
-    <div class="item item-body">
-      <div class="show-list-numbers-and-dots" style="margin-bottom: 10px;">
-        <p style="margin-top:0px;color:#000000;" ng-click="">Browse Recipes</p>
-      </div>
+  </div>
+  <div ui-sref="shoppingList" class="mainOptionDiv">
+    <div class="mainOptionSubDiv">
+      <img src= "http://www.beyinci.com/contents/LISTE.png"></img>
+      <p class="mainOptionP">Shopping Lists</p>
     </div>
-</div>
+  </div>
+  <div ui-sref="recipeBook" class="mainOptionDiv">
+    <div class="mainOptionSubDiv">
+      <img src= "../../../img/favorite.png"></img>
+      <p class="mainOptionP">Recipe Book</p>
+    </div>
+  </div>
     
-<div ui-sref="shoppingList">
-    <div style="margin: 10px; background-color: rgb(232, 235, 239); text-align: center;">
-      <img src= "http://www.beyinci.com/contents/LISTE.png" style="width: 100%"></img>
-    </div>
-    <div class="item item-body">
-      <div class="show-list-numbers-and-dots" style="margin-bottom: 10px">
-        <p style="margin-top:0px;color:#000000;" ng-click="">Shopping List</p>
-      </div>
-    </div>
-</div>
-
-<div ui-sref="recipeBook">
-    <div style="margin: 10px; background-color: rgb(232, 235, 239); text-align: center;">
-      <img src= "../../../img/favorite.png" style="width: 100%"></img>
-    </div>
-    <div class="item item-body">
-      <div class="show-list-numbers-and-dots">
-        <p style="margin-top:0px;color:#000000;" ng-click="">Recipe book</p>
-      </div>
-    </div>
-</div>
 </ion-content>
-
 
 </ion-view>

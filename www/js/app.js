@@ -101,6 +101,6 @@ smartApp.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: '../templates/single-recipe.html'
   });
 
-  $urlRouterProvider.otherwise("/main-options");
+  $urlRouterProvider.otherwise("/");
 
   });

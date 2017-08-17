@@ -1,13 +1,26 @@
 'use strict';
 
-smartApp.controller('SingleRecipeCtrl', function($scope, $stateParams, $timeout, $ionicPopup, RecipeFactory, fbDataFactory, UserFactory) {
-    console.log("stateParams", $stateParams.recipeId);
+smartApp.controller('SingleRecipeCtrl', function($scope, $stateParams, $timeout, $ionicLoading, $ionicPopup, RecipeFactory, fbDataFactory, UserFactory) {
+    // console.log("stateParams", $stateParams.recipeId);
 
+    $scope.show = function() {
+    $ionicLoading.show({
+      template:'<ion-spinner></ion-spinner>'
+    });
+    };
+
+     $scope.hide = function(){
+        $ionicLoading.hide();
+    };
+
+
+    $scope.show($ionicLoading)
     let Recipeid = $stateParams.recipeId;
     RecipeFactory.getSingleRecipeById(Recipeid)
     .then( (recievedData) => {
         // console.log("recievedData",recievedData.data );
         $scope.recipes = recievedData.data;
+        $scope.hide($ionicLoading);
     })
     .catch( (err) => {
         console.log("err",err );

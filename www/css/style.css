@@ -1,6 +1,6 @@
 /* Empty. Add your own CSS if you like */
 
-body, h1, h2, h3, h4, h5, h6, button {
+body, h1, h2, h3, h4, h5, h6, button, option, input, select {
     font-family: 'Bad Script', cursive;
 }
 
@@ -83,4 +83,8 @@ body, h1, h2, h3, h4, h5, h6, button {
 
 .singleRecipeMainDiv div {
     padding-bottom: 10px;
+}
+
+#listSelect {
+    width: 80%;
 }

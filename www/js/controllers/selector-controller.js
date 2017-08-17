@@ -1,6 +1,19 @@
 'use strict';
 
-smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $window,$location, $ionicPopup, fbDataFactory, RecipeFactory, UserFactory) {
+smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $ionicLoading, $state, $window,$location, $ionicPopup, fbDataFactory, RecipeFactory, UserFactory) {
+    
+
+  $scope.show = function() {
+    $ionicLoading.show({
+      template:'<ion-spinner></ion-spinner>'
+    });
+    };
+
+     $scope.hide = function(){
+        $ionicLoading.hide();
+    };
+
+    $scope.show($ionicLoading)
     
     let RecipeId = $stateParams.recipeId;
     console.log("RecipeId",RecipeId );
@@ -9,6 +22,7 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $
    fbDataFactory.getAllUserLists()
    .then( (listData) => {
     $scope.lists = Object.values(listData.data); //<----get all lists for a user
+    $scope.hide($ionicLoading);
    });
 
    $scope.update = (item) => {
@@ -64,6 +78,11 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $
         $scope.items = dataRecipe.data.extendedIngredients;
       });
 
+    // $scope.closePopup = () => {
+    //   $ionicPopup.close();
+    // }
+
+
   $scope.showPopup = function() {
   $scope.data = {};
 
@@ -90,28 +109,35 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $
   });
 
   myPopup.then(function(res) {
-    let currentUser = null;
-    let listObj = {};
-    UserFactory.isAuthenticated()
-    .then( (user) => {
-    currentUser = UserFactory.getUser(); 
-    console.log("currentUser", currentUser);
-     listObj = {
-        listName: res,
-        uid : currentUser
-    };
+    if(res != (null || "" || undefined))
+    {
+      $scope.show($ionicLoading)
+
+      let currentUser = null;
+      let listObj = {};
+      UserFactory.isAuthenticated()
+      .then( (user) => {
+      currentUser = UserFactory.getUser(); 
+      console.log("currentUser", currentUser);
+       listObj = {
+          listName: res,
+          uid : currentUser
+      };
 
 
-        console.log("listObj", listObj);
-        fbDataFactory.addNewListToFB(listObj)
-        .then( (data) => {
-            $window.location.reload();
+          console.log("listObj", listObj);
+          fbDataFactory.addNewListToFB(listObj)
+          .then( (data) => {
+              $state.reload();
+            $scope.hide($ionicLoading)
 
-        })
-        .catch( (err) => {
-            console.log("err",err );
-        });
-    });
+          })
+          .catch( (err) => {
+              console.log("err",err );
+          });
+      });
+      
+    }
   });
 };
 });

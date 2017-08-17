@@ -10,9 +10,9 @@
     <form class="list" ng-repeat="item in items">
       <ion-checkbox ng-model="selected" ng-change="getSelectedItems(item)">{{item.name}}</ion-checkbox>
     </form>
-      <button  ng-click="addToShoppingList()" >Done</button>
+      <button ion-button full class="bar-positive" ng-click="addToShoppingList()">Done</button>
   </ion-content>
 
-<div ng-include src="'templates/footer-partial.html'"></div>
+<!-- <div ng-include src="'templates/footer-partial.html'"></div> -->
   
 </ion-view>

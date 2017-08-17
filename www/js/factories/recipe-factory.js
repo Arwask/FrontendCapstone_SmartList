@@ -15,7 +15,7 @@ smartApp.factory('RecipeFactory', function($q, $http, RecipeCreds) {
               }
         }).
         then( (AllData) => {
-            console.log("data", AllData );
+            // console.log("data", AllData );
             resolve(AllData);
         })
         .catch( (err) => {
@@ -35,7 +35,7 @@ smartApp.factory('RecipeFactory', function($q, $http, RecipeCreds) {
                   }
             })
             .then( (searchedData) => {
-                console.log("searchedData",searchedData );
+                // console.log("searchedData",searchedData );
                 resolve(searchedData);
 
             });
@@ -48,7 +48,7 @@ smartApp.factory('RecipeFactory', function($q, $http, RecipeCreds) {
             // working
             for(let i=0;i<idArray.length;i++)
             {
-                console.log("idArray", idArray[i]);
+                // console.log("idArray", idArray[i]);
                 $http({
                 method:"GET",
                 url: `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/${idArray[i]}/information?`,

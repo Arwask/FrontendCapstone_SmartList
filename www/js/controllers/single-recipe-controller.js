@@ -1,6 +1,6 @@
 'use strict';
 
-smartApp.controller('SingleRecipeCtrl', function($scope, $stateParams, RecipeFactory, fbDataFactory, UserFactory) {
+smartApp.controller('SingleRecipeCtrl', function($scope, $stateParams, $timeout, $ionicPopup, RecipeFactory, fbDataFactory, UserFactory) {
     console.log("stateParams", $stateParams.recipeId);
 
     let Recipeid = $stateParams.recipeId;
@@ -8,7 +8,6 @@ smartApp.controller('SingleRecipeCtrl', function($scope, $stateParams, RecipeFac
     .then( (recievedData) => {
         // console.log("recievedData",recievedData.data );
         $scope.recipes = recievedData.data;
-        console.log("$scope.recipes",$scope.recipes);
     })
     .catch( (err) => {
         console.log("err",err );
@@ -26,7 +25,18 @@ smartApp.controller('SingleRecipeCtrl', function($scope, $stateParams, RecipeFac
                 };
             fbDataFactory.addRecipeToFirebase(recipeObj)
             .then( (data) => {
-                console.log("data", data);
+                // console.log("data", data);
+                var myPopup = $ionicPopup.alert({
+                title: 'Successfully saved in Recipe Book',
+                template: 'Access it any time via Recipe Book option.'
+                });
+                myPopup.then(function(res) {
+                 
+                 // console.log('They better select a list');
+                });
+                $timeout(function() {
+                    myPopup.close(); // close the popup after 3 seconds for some reason
+                }, 2000);
             });
         });
     };

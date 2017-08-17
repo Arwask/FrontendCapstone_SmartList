@@ -9,12 +9,9 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $
    fbDataFactory.getAllUserLists()
    .then( (listData) => {
     $scope.lists = Object.values(listData.data); //<----get all lists for a user
-    // console.log("listData", $scope.lists);
    });
 
    $scope.update = (item) => {
-      // $scope.selectedListItem = $scope.selectedList;
-      // console.log("$scope.selectedList", item); 
       $scope.selectedList = item.selected;
    };
    let selectedItemArr = [];
@@ -26,8 +23,6 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $
         let index = selectedItemArr.indexOf(item.name);
         selectedItemArr.splice(index, 1);
     }
-      // console.log("itemArr", selectedItemArr);
-      // console.log("item", item);
    };
 
    $scope.addToShoppingList = () => {
@@ -35,7 +30,7 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $
      {
         var alertPopup = $ionicPopup.alert({
         title: 'You have not selected a list',
-        template: 'Please select a list you would like to add item to'
+        template: 'Please select a list you would like to add items to'
         });
         alertPopup.then(function(res) {
          console.log('They better select a list');
@@ -51,7 +46,6 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $
         }; 
         fbDataFactory.addItemToFB(tempObj)
         .then( (dataItem) => {
-          console.log("data after adding item", dataItem.data);
           let url = ($window.location.href).split("/");
           url.pop();
           url.pop();

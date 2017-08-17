@@ -24,7 +24,7 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
                     response.data[key].fbKey = key;
                 }
                 
-                console.log("response", response.data);
+                // console.log("response", response.data);
                 resolve(response);
             })
             .catch( (err) => {
@@ -42,10 +42,10 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
                 let currentUser = UserFactory.getUser();   
                 getUserRecipes(currentUser)
                 .then( (userRecipes) => {
-                    console.log("userRecipes check!", userRecipes.data);
+                    // console.log("userRecipes check!", userRecipes.data);
                     for(let key in userRecipes.data) {
                         if(userRecipes.data[key].recipe_id == currentRecipeId) {
-                            console.log("key", key);
+                            // console.log("key", key);
                             resolve(key);
                             // return key;
                         }
@@ -67,7 +67,7 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
                return $http.delete(`${FirebaseUrl}recipes/${keyOfRecipeToDelete}.json`);
         })
         .then( (response) => {
-            console.log("response????", response);
+            // console.log("response????", response);
             resolve(response.data);
         })
         .catch( (err) => {
@@ -83,7 +83,7 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
             UserFactory.isAuthenticated()
             .then( (user) => {
                 let currentUser = UserFactory.getUser(); 
-                console.log("currentUser", currentUser);
+                // console.log("currentUser", currentUser);
                  getLists(currentUser).
                  then( (allLists) => {
                     // console.log("allLists", allLists);
@@ -162,10 +162,10 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
         return $q( (resolve, reject) => {
            $http.delete(`${FirebaseUrl}list/${listId}.json`)
             .then( (response) => {
-                console.log("deleted???", response);
+                // console.log("deleted???", response);
                 deleteAllItemsOfAList(listId) //deletes all item with this list_id
                 .then( (someData) => {
-                    console.log("someData", someData);
+                    // console.log("someData", someData);
                     // resolve(someData);
                 });
             })
@@ -182,7 +182,7 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
             Object.keys(response.data).forEach( (item) => {
                 deleteOneItemFromFB(item).
                 then( (uselessData) => {
-                    console.log("uselessData", uselessData);
+                    // console.log("uselessData", uselessData);
                 });
             });
         })

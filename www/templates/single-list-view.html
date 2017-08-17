@@ -2,7 +2,7 @@
 
 <ion-view>
     <!-- <div class="spacer" style="width: 300px; height: 38px;"></div> -->
-<ion-content padding="true" class="has-header">
+<ion-content class="has-header">
 
   <ion-header-bar class="bar-positive">
     <div class="buttons">
@@ -11,10 +11,10 @@
     </div>
     <div class="buttons">
       <button ng-click="addNewItemPopup()" class="button button-clear"><i class="icon ion-android-add"></i></button>
-      <button ng-click="scan()" class="button button-clear"><i class="icon ion-ios-barcode-outline"></i></button>
+      <!-- <button ng-click="scan()" class="button button-clear"></button> -->
 
-      <button class="button" ng-click="data.showDelete = false; data.showReorder = !data.showReorder">
-          Reorder
+      <button class="button button-clear" ng-click="data.showDelete = false; data.showReorder = !data.showReorder">
+          <i class="icon ion-drag"></i>
       </button>
     </div>
   </ion-header-bar>

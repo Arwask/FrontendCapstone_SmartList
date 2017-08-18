@@ -29,7 +29,6 @@ smartApp.controller('ShoppingListCtrl', function($scope,$ionicPopup,$window,  fb
     };
   
 $scope.showEditPopup = function(list) {
-    // $scope.edited = list;
     $scope.data = list;
     var editPopup = $ionicPopup.show({
         template: '<input type="text" ng-model="data.listName">',
@@ -42,7 +41,7 @@ $scope.showEditPopup = function(list) {
             type: 'button-positive',
             onTap: function(e) {
               if (!$scope.data.listName) {
-                //don't allow the user to close unless he enters wifi password
+                //don't allow the user to close unless he enters data
                 e.preventDefault();
               } 
               else 
@@ -53,7 +52,6 @@ $scope.showEditPopup = function(list) {
     });
 
     editPopup.then( (editedList) => {
-        console.log("editedList", editedList);
         fbDataFactory.EditListInFB(editedList)
         .then( (recievedData) => {
             console.log("recievedData", recievedData);
@@ -64,7 +62,6 @@ $scope.showEditPopup = function(list) {
 
 
 $scope.onItemDelete = function(list) {
-    console.log("list???", list);
     $scope.lists.splice($scope.lists.indexOf(list), 1);
     fbDataFactory.deleteOneListFromFB(list.list_id)
     .then( (data) => {
@@ -108,7 +105,6 @@ $scope.onItemDelete = function(list) {
         listName: res,
         uid : currentUser
     };
-        console.log("listObj", listObj);
         fbDataFactory.addNewListToFB(listObj)
         .then( (data) => {
             $window.location.reload();

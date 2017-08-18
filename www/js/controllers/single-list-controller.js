@@ -1,12 +1,10 @@
 'use strict';
 
-smartApp.controller('SingleListCtrl', function($scope, $stateParams,$ionicPopup, $window, fbDataFactory) {
+smartApp.controller('SingleListCtrl', function($scope, $stateParams,$ionicPopup, $ionicListDelegate, $window, fbDataFactory) {
     
     let listId = $stateParams.shoppingListId;
-    console.log("listId on single page view", listId);
     fbDataFactory.getAllListItems(listId).
     then( (allItems) => {
-        console.log("allItems", allItems);
         $scope.items = Object.values(allItems);
     })
     .catch( (err) => {
@@ -25,7 +23,9 @@ smartApp.controller('SingleListCtrl', function($scope, $stateParams,$ionicPopup,
         title: 'Edit the Item Name',
         scope: $scope,
         buttons: [
-          { text: 'Cancel' },
+          { text: 'Cancel' ,
+            onTap: $ionicListDelegate.closeOptionButtons()
+          },
           {
             text: '<b>Save</b>',
             type: 'button-positive',
@@ -35,19 +35,21 @@ smartApp.controller('SingleListCtrl', function($scope, $stateParams,$ionicPopup,
               } 
               else 
                 return $scope.data;
+                $ionicListDelegate.closeOptionButtons();
             }
           }
         ]
     });
     editPopup.then( (editedItem) => {
-        console.log("editedItem", editedItem);
         fbDataFactory.EditItemInFB(editedItem)
         .then( (recievedData) => {
-            console.log("recievedData", recievedData);
+            // console.log("recievedData", recievedData);
         });
     });
 };
 
+
+// add new item popup
 $scope.addNewItemPopup = () => {
     $scope.data = {};
     var addPopup = $ionicPopup.show({
@@ -99,7 +101,6 @@ $scope.addNewItemPopup = () => {
     $scope.items.splice($scope.items.indexOf(item), 1);
     fbDataFactory.deleteOneItemFromFB(item.item_id)
     .then( (data) => {
-        console.log("data", data);
     });
   };
 

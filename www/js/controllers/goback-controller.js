@@ -5,7 +5,6 @@ smartApp.controller('goBack', function($scope,$q, $ionicHistory, $window, $ionic
   };
 
   $scope.toggleRightSideMenu = function() {
-    console.log("Something clicked?????");
       $ionicSideMenuDelegate.toggleRight();
    };
 

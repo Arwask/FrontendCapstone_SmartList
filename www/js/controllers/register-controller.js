@@ -9,7 +9,6 @@ $scope.registerInfo = {
 
 $scope.register = () => {
         //TODO: validate that user doesn't exist
-        console.log("You clicked register");
         console.log("$scope.registerInfo", $scope.registerInfo);
         UserFactory.createUser($scope.registerInfo)
         .then( (userData) => {

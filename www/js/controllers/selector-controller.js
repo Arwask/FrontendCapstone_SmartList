@@ -1,6 +1,19 @@
 'use strict';
 
-smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $window,$location, $ionicPopup, fbDataFactory, RecipeFactory, UserFactory) {
+smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $ionicLoading, $state, $window,$location, $ionicPopup, fbDataFactory, RecipeFactory, UserFactory) {
+    
+
+  $scope.show = function() {
+    $ionicLoading.show({
+      template:'<ion-spinner></ion-spinner>'
+    });
+    };
+
+     $scope.hide = function(){
+        $ionicLoading.hide();
+    };
+
+    $scope.show($ionicLoading)
     
     let RecipeId = $stateParams.recipeId;
     console.log("RecipeId",RecipeId );
@@ -9,12 +22,10 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $
    fbDataFactory.getAllUserLists()
    .then( (listData) => {
     $scope.lists = Object.values(listData.data); //<----get all lists for a user
-    // console.log("listData", $scope.lists);
+    $scope.hide($ionicLoading);
    });
 
    $scope.update = (item) => {
-      // $scope.selectedListItem = $scope.selectedList;
-      // console.log("$scope.selectedList", item); 
       $scope.selectedList = item.selected;
    };
    let selectedItemArr = [];
@@ -26,8 +37,6 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $
         let index = selectedItemArr.indexOf(item.name);
         selectedItemArr.splice(index, 1);
     }
-      // console.log("itemArr", selectedItemArr);
-      // console.log("item", item);
    };
 
    $scope.addToShoppingList = () => {
@@ -35,7 +44,7 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $
      {
         var alertPopup = $ionicPopup.alert({
         title: 'You have not selected a list',
-        template: 'Please select a list you would like to add item to'
+        template: 'Please select a list you would like to add items to'
         });
         alertPopup.then(function(res) {
          console.log('They better select a list');
@@ -51,7 +60,6 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $
         }; 
         fbDataFactory.addItemToFB(tempObj)
         .then( (dataItem) => {
-          console.log("data after adding item", dataItem.data);
           let url = ($window.location.href).split("/");
           url.pop();
           url.pop();
@@ -69,6 +77,11 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $
     .then( (dataRecipe) => {
         $scope.items = dataRecipe.data.extendedIngredients;
       });
+
+    // $scope.closePopup = () => {
+    //   $ionicPopup.close();
+    // }
+
 
   $scope.showPopup = function() {
   $scope.data = {};
@@ -96,28 +109,35 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $state, $
   });
 
   myPopup.then(function(res) {
-    let currentUser = null;
-    let listObj = {};
-    UserFactory.isAuthenticated()
-    .then( (user) => {
-    currentUser = UserFactory.getUser(); 
-    console.log("currentUser", currentUser);
-     listObj = {
-        listName: res,
-        uid : currentUser
-    };
+    if(res != (null || "" || undefined))
+    {
+      $scope.show($ionicLoading)
+
+      let currentUser = null;
+      let listObj = {};
+      UserFactory.isAuthenticated()
+      .then( (user) => {
+      currentUser = UserFactory.getUser(); 
+      console.log("currentUser", currentUser);
+       listObj = {
+          listName: res,
+          uid : currentUser
+      };
 
 
-        console.log("listObj", listObj);
-        fbDataFactory.addNewListToFB(listObj)
-        .then( (data) => {
-            $window.location.reload();
+          console.log("listObj", listObj);
+          fbDataFactory.addNewListToFB(listObj)
+          .then( (data) => {
+              $window.location.reload();
+            $scope.hide($ionicLoading)
 
-        })
-        .catch( (err) => {
-            console.log("err",err );
-        });
-    });
+          })
+          .catch( (err) => {
+              console.log("err",err );
+          });
+      });
+      
+    }
   });
 };
 });

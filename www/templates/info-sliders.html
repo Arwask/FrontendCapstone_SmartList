@@ -1,7 +1,7 @@
 <ion-view title="Page" hide-nav-bar="true">
  
   <ion-content padding="false" class="manual-ios-statusbar-padding" scroll="false">
-    <ion-slides disable-side-menu-drag="" options="{'loop': false}" slider="slider2" delegate-handle="slider2" style="width:100%;height:100%;">
+    <ion-slides disable-side-menu-drag="" options="{'loop': false}" slider="slider1" delegate-handle="slider1" style="width:100%;height:100%;">
       <ion-slide-page style="background-color:#7E7ED4;" class="padding">
         <div style="display:table;width:100%;height:100%;">
           <div style="display:table-row;">
@@ -9,7 +9,7 @@
               <div style="margin: 0px;text-align: center;">
                 <img src="../../img/fruits_veggies.png">
               </div>
-              <h3 style="color:#FFFFFF;text-align:center;">App_Name</h3>
+              <h3 style="color:#FFFFFF;text-align:center;">Smart List</h3>
               <div style="text-align:center;" class="show-list-numbers-and-dots">
                 <p style="color:#FCFAFA;">
                   <strong>Never</strong> forget an important ingredient from your recipe.</p>
@@ -77,7 +77,7 @@
         <input type="password" placeholder="Password" ng-model="loginInfo.password">
       </label>
     </form>
-    <button style="color:#EB626F;" class="button button-light button-block icon ion-android-contacts" ng-click="login()" ui-sref="mainOptions">Sign In</button>
+    <button style="color:#EB626F;" class="button button-light button-block icon ion-android-contacts" ng-click="login()">Sign In</button>
     <h5 style="color:#F6FAF8;font-weight:lighter;text-align:center;">--- OR ---</h5>
     <a ui-sref="register" style="color:#EB626F;" class="button button-light button-block">Register New</a>
       </ion-slide-page>

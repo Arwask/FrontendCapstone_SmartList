@@ -2,7 +2,7 @@
 
 <ion-view title="Recipes">
 <ion-content class="has-header manual-ios-statusbar-padding">
-<form>
+<form ng-submit="searchedRecipe(searchText)">
 <div>
 <!-- <input type="text" name="search" placeholder="search.." ng-model="searchText" /> -->
 <div class="bar bar-header item-input-inset">
@@ -11,7 +11,7 @@
             <input type="search" placeholder="Search" name="search" ng-model="searchText">
         </label>
 
-<button class="button" ng-click="searchedRecipe(searchText)">
+<button class="button" ng-click="searchedRecipe(searchText)" type="submit">
     <i class="icon ion-search"></i>
 </button>
 </div>
@@ -28,6 +28,7 @@
       </div>
   </div>
 </ion-card>
+
 </ion-content>
 
 <!-- <div ng-include src="'templates/footer-partial.html'"></div> -->

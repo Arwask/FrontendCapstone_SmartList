@@ -1,7 +1,13 @@
 /* Empty. Add your own CSS if you like */
 
-body, h1, h2, h3, h4, h5, h6, button, option, input, select {
-    font-family: 'Bad Script', cursive;
+body, button, option, input, select {
+    font-family: 'Montaga', serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Boogaloo', cursive;
+    /*font-size:1.1em;*/
+
 }
 
 #imgIcon {
@@ -87,4 +93,13 @@ body, h1, h2, h3, h4, h5, h6, button, option, input, select {
 
 #listSelect {
     width: 80%;
+}
+
+.buttonBar button {
+    margin: 0 30px;
+    color: #364FCD;
+}
+
+.buttonBar button i {
+    color: #364FCD;
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-smartApp.controller('SingleListCtrl', function($scope, $stateParams,$ionicPopup, $window, fbDataFactory) {
+smartApp.controller('SingleListCtrl', function($scope, $stateParams,$ionicPopup, $ionicListDelegate, $window, fbDataFactory) {
     
     let listId = $stateParams.shoppingListId;
     fbDataFactory.getAllListItems(listId).
@@ -23,7 +23,9 @@ smartApp.controller('SingleListCtrl', function($scope, $stateParams,$ionicPopup,
         title: 'Edit the Item Name',
         scope: $scope,
         buttons: [
-          { text: 'Cancel' },
+          { text: 'Cancel' ,
+            onTap: $ionicListDelegate.closeOptionButtons()
+          },
           {
             text: '<b>Save</b>',
             type: 'button-positive',
@@ -33,6 +35,7 @@ smartApp.controller('SingleListCtrl', function($scope, $stateParams,$ionicPopup,
               } 
               else 
                 return $scope.data;
+                $ionicListDelegate.closeOptionButtons();
             }
           }
         ]

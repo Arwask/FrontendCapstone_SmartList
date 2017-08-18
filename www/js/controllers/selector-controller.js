@@ -128,7 +128,7 @@ smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $ionicLoa
           console.log("listObj", listObj);
           fbDataFactory.addNewListToFB(listObj)
           .then( (data) => {
-              $state.reload();
+              $window.location.reload();
             $scope.hide($ionicLoading)
 
           })

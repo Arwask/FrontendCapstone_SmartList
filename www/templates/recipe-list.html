@@ -11,7 +11,7 @@
             <input type="search" placeholder="Search" name="search" ng-model="searchText">
         </label>
 
-<button class="button" ng-click="searchedRecipe(searchText)" type="submit">
+<button class="button" type="submit">
     <i class="icon ion-search"></i>
 </button>
 </div>
@@ -20,7 +20,7 @@
 </div>
 
 
-<ion-card ng-repeat="recipe in recipes" ui-sref="singleRecipe({recipeId:{{recipe.id}}})">
+<ion-card ng-repeat="recipe in recipes" ui-sref="singleRecipe({recipeId:recipe.id})">
   <div class="list card singleRecipeCard">
       <div class="singleRecipeDiv">
         <img src="{{recipe.image}}">

@@ -11,6 +11,12 @@ smartApp.controller('SingleListCtrl', function($scope, $stateParams,$ionicPopup,
         console.log("err", err);
     });
 
+    fbDataFactory.getListName(listId)
+    .then( (singleRecievedList) => {
+      $scope.NavTitle = singleRecievedList.data.listName;
+      // console.log("singleRecievedList", singleRecievedList.data);
+    });
+
     $scope.data = {
     showDelete: false
     };
@@ -72,11 +78,12 @@ $scope.addNewItemPopup = () => {
         ]
     });
     addPopup.then( (newItem) => {
-
+      if(newItem != (null || "" || undefined))
+      {
        let itemObj = {
           item_name: newItem,
           list_id : listId
-      };
+        };
           console.log("itemObj", itemObj);
           fbDataFactory.addNewItemToFB(itemObj)
           .then( (data) => {
@@ -86,6 +93,7 @@ $scope.addNewItemPopup = () => {
           .catch( (err) => {
               console.log("err",err );
           });
+        }
       });
 };
 

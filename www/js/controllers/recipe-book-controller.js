@@ -2,6 +2,8 @@
 
 smartApp.controller('RecipeBookCtrl', function($scope, $state, $window, fbDataFactory, UserFactory, RecipeFactory) {
 
+    $scope.NavTitle = "Recipe Book"
+
     UserFactory.isAuthenticated()
     .then( (user) => {
         let currentUser = UserFactory.getUser();   

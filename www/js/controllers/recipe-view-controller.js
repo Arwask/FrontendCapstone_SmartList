@@ -2,6 +2,8 @@
 
 smartApp.controller('RecipeViewCtrl', function($scope, $window,$q,$ionicLoading, RecipeFactory) {
 
+    $scope.NavTitle = "Browse Recipes";
+    
     $scope.show = function() {
     $ionicLoading.show({
       template:'<ion-spinner></ion-spinner>'
@@ -23,21 +25,6 @@ smartApp.controller('RecipeViewCtrl', function($scope, $window,$q,$ionicLoading,
     })
     // .finally( ($ionicLoading) => {
     // })
-
-    $scope.loadMore = () => {
-        RecipeFactory.get10Recipes()
-        .then( (recievedRecipes) => {
-        $scope.recipes.push(recievedRecipes.data.recipes);
-        $scope.$broadcast('scroll.infiniteScrollComplete');
-    })
-    .catch( (err) => {
-        console.log("Error",err );
-    })
-    };
-
-    $scope.$on('$stateChangeSuccess', function() {
-    $scope.loadMore();
-    });
 
     let recipeIdArray = [];
 

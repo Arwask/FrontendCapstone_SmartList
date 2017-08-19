@@ -2,11 +2,12 @@
 
 body, button, option, input, select {
     font-family: 'Montaga', serif;
+    font-size: 1.1em;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Boogaloo', cursive;
-    /*font-size:1.1em;*/
+    /*font-size:1.2em;*/
 
 }
 
@@ -106,4 +107,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .sideMenuContent ion-list ion-item{
     color: #387ef5;
+}
+
+.navTitleCenter {
+    margin-left: 100px;
 }

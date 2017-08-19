@@ -15,6 +15,8 @@ smartApp.controller('ShoppingListCtrl', function($scope,$ionicPopup,$window,  fb
     //     });
     // };
 
+    $scope.NavTitle = "Shopping Lists";
+
     fbDataFactory.getAllUserLists().
     then( (listData) => {
         $scope.lists = Object.values(listData.data);

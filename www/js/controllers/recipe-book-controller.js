@@ -1,9 +1,19 @@
 'use strict';
 
-smartApp.controller('RecipeBookCtrl', function($scope, $state, $window, fbDataFactory, UserFactory, RecipeFactory) {
+smartApp.controller('RecipeBookCtrl', function($scope, $state, $window, $ionicLoading, fbDataFactory, UserFactory, RecipeFactory) {
 
-    $scope.NavTitle = "Recipe Book"
+    $scope.NavTitle = "Recipe Book";
+    $scope.show = function() {
+    $ionicLoading.show({
+      template:'<ion-spinner></ion-spinner>'
+    });
+    };
 
+     $scope.hide = function(){
+        $ionicLoading.hide();
+    };
+
+    $scope.show();
     UserFactory.isAuthenticated()
     .then( (user) => {
         let currentUser = UserFactory.getUser();   
@@ -17,7 +27,7 @@ smartApp.controller('RecipeBookCtrl', function($scope, $state, $window, fbDataFa
 
             RecipeFactory.getRecipeById(idArray)
             .then( (recievedData) => {
-                
+                $scope.hide();
                 $scope.recipes = recievedData;
                 $state.reload();
             })

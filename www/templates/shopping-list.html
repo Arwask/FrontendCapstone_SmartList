@@ -6,10 +6,9 @@
   <ion-header-bar style="background-color: #D5F1EE;">
     <div class="buttons buttonBar">
 
-      <button class="button button-icon"
-        ng-click="data.showDelete = !data.showDelete; data.showReorder = false"><i class="icon ion-minus-circled"></i></button>
+      <button class="button button-icon" style="margin: 0;" ng-click="data.showDelete = !data.showDelete; data.showReorder = false"><i class="icon ion-minus-circled"></i></button>
 
-      <button  class="button button-clear" ng-click="addNewItemPopup()"><i class="icon ion-android-add"></i></button>
+      <button  class="button button-clear" style="position: fixed; right: 0; margin: 0;" ng-click="addNewListPopup()"><i class="icon ion-android-add"></i></button>
 
     </div>
   </ion-header-bar> 
@@ -21,9 +20,8 @@
       {{ list.listName }}
       <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(list)">
       </ion-delete-button>
-      <ion-option-button class="button-assertive" ng-click="showEditPopup(list)">Edit
+      <ion-option-button class="button-balanced" ng-click="showEditPopup(list)">Edit
       </ion-option-button>
-      <ion-reorder-button class="ion-navicon" on-reorder="moveItem(list, $fromIndex, $toIndex)"></ion-reorder-button>
 
       </ion-item>
 

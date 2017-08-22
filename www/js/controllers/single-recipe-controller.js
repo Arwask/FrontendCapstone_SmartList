@@ -2,7 +2,6 @@
 
 smartApp.controller('SingleRecipeCtrl', function($scope, $stateParams, $timeout, $ionicLoading, $ionicPopup, RecipeFactory, fbDataFactory, UserFactory) {
     // console.log("stateParams", $stateParams.recipeId);
-
     $scope.show = function() {
     $ionicLoading.show({
       template:'<ion-spinner></ion-spinner>'
@@ -20,6 +19,7 @@ smartApp.controller('SingleRecipeCtrl', function($scope, $stateParams, $timeout,
     .then( (recievedData) => {
         // console.log("recievedData",recievedData.data );
         $scope.recipes = recievedData.data;
+        $scope.NavTitle = recievedData.data.title
         $scope.hide($ionicLoading);
     })
     .catch( (err) => {

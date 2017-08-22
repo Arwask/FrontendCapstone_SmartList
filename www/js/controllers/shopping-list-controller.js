@@ -1,6 +1,6 @@
 'use strict';
 
-smartApp.controller('ShoppingListCtrl', function($scope,$ionicPopup,$window,  fbDataFactory, UserFactory) {
+smartApp.controller('ShoppingListCtrl', function($scope,$ionicPopup,$window, $ionicListDelegate, fbDataFactory, UserFactory) {
     
 
     // $scope.scanBarcode = function() {
@@ -33,11 +33,13 @@ smartApp.controller('ShoppingListCtrl', function($scope,$ionicPopup,$window,  fb
 $scope.showEditPopup = function(list) {
     $scope.data = list;
     var editPopup = $ionicPopup.show({
-        template: '<input type="text" ng-model="data.listName">',
+        template: '<input type="text" ng-model="data.listName" autofocus>',
         title: 'Edit the List Name',
         scope: $scope,
         buttons: [
-          { text: 'Cancel' },
+          { text: 'Cancel',
+            onTap: $ionicListDelegate.closeOptionButtons()
+          },
           {
             text: '<b>Save</b>',
             type: 'button-positive',
@@ -48,6 +50,7 @@ $scope.showEditPopup = function(list) {
               } 
               else 
                 return $scope.data;
+                $ionicListDelegate.closeOptionButtons();
             }
           }
         ]
@@ -71,12 +74,12 @@ $scope.onItemDelete = function(list) {
     });
 };
  
- $scope.showPopup = function() {
+ $scope.addNewListPopup = function() {
   $scope.data = {};
 
   // An elaborate, custom popup
   var myPopup = $ionicPopup.show({
-    template: '<input type="text" ng-model="data.newList">',
+    template: '<input type="text" ng-model="data.newList" autofocus>',
     title: 'Enter New List Name',
     scope: $scope,
     buttons: [
@@ -97,6 +100,9 @@ $scope.onItemDelete = function(list) {
   });
 
   myPopup.then(function(res) {
+
+    if(res != (null || "" || undefined))
+    {
     let currentUser = null;
     let listObj = {};
     UserFactory.isAuthenticated()
@@ -106,7 +112,7 @@ $scope.onItemDelete = function(list) {
      listObj = {
         listName: res,
         uid : currentUser
-    };
+      };
         fbDataFactory.addNewListToFB(listObj)
         .then( (data) => {
             $window.location.reload();
@@ -116,6 +122,7 @@ $scope.onItemDelete = function(list) {
             console.log("err",err );
         });
     });
+  }
   }); 
   };
 });

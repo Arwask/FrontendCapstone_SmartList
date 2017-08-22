@@ -233,6 +233,18 @@ smartApp.factory('fbDataFactory', function($q, $http,FirebaseUrl, UserFactory) {
             });
         });
     };
+
+    let getListName = (listId) => {
+        return $q( (resolve,reject) => {
+            $http.get(`${FirebaseUrl}list/${listId}.json`)
+            .then( (singleList) => {
+                resolve(singleList);
+            })
+            .catch( (err) => {
+                reject(err);
+            })
+        })
+    }
 return { 
     addRecipeToFirebase, 
     getUserRecipes, 
@@ -245,7 +257,8 @@ return {
     deleteOneListFromFB,
     EditListInFB,
     EditItemInFB,
-    addNewItemToFB
+    addNewItemToFB,
+    getListName
     };
 
 });

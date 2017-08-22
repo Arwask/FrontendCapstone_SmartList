@@ -2,6 +2,8 @@
 
 smartApp.controller('RecipeViewCtrl', function($scope, $window,$q,$ionicLoading, RecipeFactory) {
 
+    $scope.NavTitle = "Browse Recipes";
+    
     $scope.show = function() {
     $ionicLoading.show({
       template:'<ion-spinner></ion-spinner>'
@@ -27,7 +29,7 @@ smartApp.controller('RecipeViewCtrl', function($scope, $window,$q,$ionicLoading,
     let recipeIdArray = [];
 
     $scope.searchedRecipe = (searchText) => {
-
+        $scope.show($ionicLoading); 
         RecipeFactory.searchedRecipes(searchText)
         .then( (searchedData) => {
             searchedData.data.forEach( (recipe) => {
@@ -36,6 +38,7 @@ smartApp.controller('RecipeViewCtrl', function($scope, $window,$q,$ionicLoading,
             RecipeFactory.getRecipeById(recipeIdArray)  
             .then( (Recipedata) => {
                 $scope.recipes = Recipedata;
+                $scope.hide($ionicLoading);
             });
         })
         .catch( (err) => {

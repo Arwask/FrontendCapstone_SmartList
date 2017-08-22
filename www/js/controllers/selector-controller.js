@@ -2,6 +2,7 @@
 
 smartApp.controller('SelectorCtrl', function($scope, $q, $stateParams, $ionicLoading, $state, $window,$location, $ionicPopup, fbDataFactory, RecipeFactory, UserFactory) {
     
+  $scope.NavTitle = "Selector List"
 
   $scope.show = function() {
     $ionicLoading.show({

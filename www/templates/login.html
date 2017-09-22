@@ -1,10 +1,10 @@
-<ion-view hide-nav-bar="true" title="login page" style="background-color:#87E493;" >
+<ion-view hide-nav-bar="true" title="login page" class="loginPageMain" >
   <ion-content padding="true" class="has-header">
-    <h2 style="color:#000000;text-align:center;">SIGN IN</h2>
+    <h2 class="loginPageh2">SIGN IN</h2>
     <div>
-      <img src="https://s3.amazonaws.com/ionic-io-static/FfW6ef5PSFeXKnZBYlTW_fruits_veggies.png" style="display: block; width: 100%; height: auto; margin-left: auto; margin-right: auto;">
+      <img src="https://s3.amazonaws.com/ionic-io-static/FfW6ef5PSFeXKnZBYlTW_fruits_veggies.png" class="loginImg">
     </div>
-    <div class="spacer" style="width: 300px; height: 18px;"></div>
+    <div class="spacer loginSpacer"></div>
     <form class="list">
       <label class="item item-input">
         <input type="email" placeholder="Email-id" ng-model="loginInfo.email">
@@ -12,9 +12,9 @@
       <label class="item item-input">
         <input type="password" placeholder="Password" ng-model="loginInfo.password">
       </label>
-    <button style="color:#2EEF88;" class="button button-light button-block icon ion-android-contacts" ng-click="login()">Sign In</button>
+    <button class="button button-light button-block icon ion-android-contacts loginButton" ng-click="login()">Sign In</button>
     </form>
-    <h5 style="color:#F6FAF8;font-weight:lighter;text-align:center;">--- OR ---</h5>
-    <a ui-sref="register" style="color:#2EEF88;" class="button button-light button-block">Register New</a>
+    <h5 class="loginh5">--- OR ---</h5>
+    <a ui-sref="register" class="button button-light button-block loginButton">Register New</a>
 </ion-content>
 </ion-view>

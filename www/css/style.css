@@ -199,3 +199,37 @@ h1, h2, h3, h4, h5, h6 {
    font-weight:lighter;
    text-align:center;
 }
+
+/******Login Page*******/
+
+.loginPageMain {
+    background-color:#87E493;
+}
+
+.loginPageh2 {
+    color:#000000;
+    text-align:center;
+}
+
+.loginImg {
+    display: block; 
+    width: 100%; 
+    height: auto; 
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+.loginSpacer {
+    width: 300px; 
+    height: 18px;
+}
+
+.loginButton {
+    color:#2EEF88;
+}
+
+.loginh5 {
+    color:#F6FAF8;
+    font-weight:lighter;
+    text-align:center;
+}

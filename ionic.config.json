@@ -3,7 +3,10 @@
   "app_id": "f5429dfa",
   "type": "ionic1",
   "watchPatterns": [
-    "scss/**/*"
+    "scss/**/*",
+    "www/**/*",
+    "!www/lib/**/*",
+    "!www/**/*.map"
   ],
   "integrations": {
     "gulp": {},

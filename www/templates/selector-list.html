@@ -7,7 +7,7 @@
         <select id="listSelect" ng-options="list as list.listName for list in lists" ng-model="list.selected" ng-change="update(list)" ng-init="list.selected = false">
         <option value="" disabled="true">--Select a list--</option>
         </select>
-      <button class="button button-clear" ng-click="showPopup()" style="color: red; margin-top: -10px; font-size: 2em;"><i class="icon ion-android-add"></i></button>
+      <button class="button button-clear" ng-click="showPopup()" class="selectorlistPopup"><i class="icon ion-android-add"></i></button>
     </div>
     <form class="list" ng-repeat="item in items">
       <ion-checkbox ng-model="selected" ng-change="getSelectedItems(item)">{{item.name}}</ion-checkbox>

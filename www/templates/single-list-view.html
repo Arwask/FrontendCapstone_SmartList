@@ -3,7 +3,7 @@
 <ion-view>
 <ion-content class="has-header">
 
-  <ion-header-bar style="background-color: #D5F1EE;">
+  <ion-header-bar class="backgroundHeaderBar">
     <div class="buttons buttonBar">
 
       <button class="button button-icon" ng-click="data.showDelete = !data.showDelete; data.showReorder = false"><i class="icon ion-minus-circled" ></i></button>
@@ -18,7 +18,7 @@
   </ion-header-bar>
       
   <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
-    <div class="spacer" style="width: 300px; height: 38px;"></div>
+    <div class="spacer spacerDiv"></div>
 
     <ion-item ng-repeat="item in items" item="item" class="item-remove-animate">
       {{ item.item_name }}

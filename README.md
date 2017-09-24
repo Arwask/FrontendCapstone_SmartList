@@ -31,7 +31,8 @@ Shopping lists and saved recipes can be accessed by the given tabs on main page 
 
 ## <p style="color: green;">How to Install?</p>
 
-- Clone the project to the desired folder in your directory, ```git clone https://github.com/Arwask/FrontendCapstone_SmartList.git```
+- Clone the project to the desired folder in your directory,  
+```git clone https://github.com/Arwask/FrontendCapstone_SmartList.git```
 - cd into the folder ```cd FrontendCapstone_SmartList```
 - run ```npm install``` at the root folder
 

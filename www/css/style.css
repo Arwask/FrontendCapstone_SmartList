@@ -1,4 +1,16 @@
-/* Empty. Add your own CSS if you like */
+/*********Main*******/
+
+.redFont {
+    color: red;
+}
+
+.purpleFont {
+    color: purple;
+}
+
+.fullWidth {
+    width: 100%;
+}
 
 body, button, option, input, select {
     font-family: 'Montaga', serif;
@@ -7,19 +19,12 @@ body, button, option, input, select {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Boogaloo', cursive;
-    /*font-size:1.2em;*/
-
 }
 
 #imgIcon {
     width: 10%;
     height: 80%;
 }
-
-/*.recipeCard {
-    width: 20vh;
-    height: 20vh;
-}*/
 
 /***Single Recipe Card***/
 

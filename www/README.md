@@ -1,32 +1,46 @@
-This is an addon starter template for the [Ionic Framework](http://ionicframework.com/).
+# SmartList- An Ionic App
+### An app that allows user to make shopping list directly out of thousands of amazing recipes.
 
-## How to use this template
+## <p style="color: green;">Table of Contents</p>
+- [Introduction](#introduction)
+- [Software Requirements](#software-requirements)
+- [Technologies used](#technologies-used)
+- [How to install?](#how-to-install)
+- [How to get started?](#how-to-get-started)
 
-*This template does not work on its own*. It is missing the Ionic library, and AngularJS.
+## <p style="color: green;">Introduction</p>
+This app's primary use is to let users make shopping lists out of the recipes they choose but is not limited to that. On opening the app for first time, it walks you through the app using slider pages to explain how to use it.  
 
-To use this, either create a new ionic project using the ionic node.js utility, or copy and paste this into an existing Cordova project and download a release of Ionic separately.
+It allows users to access thousands of amazing recipes explained step by step. App loads few random recipes to begin with and more can be searched using the search bar. The listify button helps you make a list and lets you choose the ingredients you would like to put on your selected shopping list.  
 
-### With the Ionic tool:
+Shopping lists and saved recipes can be accessed by the given tabs on main page or through the side menu.
 
-Take the name after `ionic-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
+## <p style="color: green;">Software Requirements</p>
 
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myApp blank
-```
+- [Node.js](https://nodejs.org/en/)
+- [npm](https://www.npmjs.com/)
 
-Then, to run it, cd into `myApp` and run:
+## <p style="color: green;">Technologies used</p>
 
-```bash
-$ ionic platform add ios
-$ ionic build ios
-$ ionic emulate ios
-```
+- [ionicv1 framework](http://ionicframework.com/getting-started/) to build the app
+- [Firebase](https://firebase.google.com/) as database
+- [ionic dashboard](https://dashboard.ionicjs.com/apps) to upload app to the cloud 
+- [ionic view](https://view.ionic.io/) to view app on phone
+- [Spoonacular API](https://spoonacular.com/food-api) for recipes.  
+  > NOTE: To avoid the misuse of API, the key is not uploaded. Please [contact](https://github.com/Arwask) me for the key. 
 
-Substitute ios for android if not on a Mac, but if you can, the ios development toolchain is a lot easier to work with until you need to do anything custom to Android.
+## <p style="color: green;">How to Install?</p>
 
-## Demo
-http://plnkr.co/edit/tpl:IUU30p?p=preview
+- Clone the project to the desired folder in your directory, ```git clone https://github.com/Arwask/FrontendCapstone_SmartList.git```
+- cd into the folder ```cd FrontendCapstone_SmartList```
+- run ```npm install``` at the root folder
 
-## Issues
-Issues have been disabled on this repo, if you do find an issue or have a question consider posting it on the [Ionic Forum](http://forum.ionicframework.com/).  Or else if there is truly an error, follow our guidelines for [submitting an issue](http://ionicframework.com/contribute/#issues) to the main Ionic repository. On the other hand, pull requests are welcome here!
+## <p style="color: green;">How to get started?</p>
+
+- Once you are inside the project folder, run ```ionic serve --lab```. It will serve the app on a PORT in your browser.
+
+## <p style="color: green;">Developer</p>
+
+[Arwa Kuterwadliwala](https://github.com/Arwask)
+
+<p style="text-align :center; color:gray">&copy; Arwa Kuterwadliwala<p>

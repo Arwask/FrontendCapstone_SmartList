@@ -43,4 +43,4 @@ Shopping lists and saved recipes can be accessed by the given tabs on main page 
 
 [Arwa Kuterwadliwala](https://github.com/Arwask)
 
-<p style="text-align :center; color:gray">&copy; Arwa Kuterwadliwala<p>
+<p align="center">&copy; 2017 Arwask</p>

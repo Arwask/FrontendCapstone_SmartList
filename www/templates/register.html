@@ -1,18 +1,18 @@
-<ion-view hide-nav-bar="true" title="login page" style="background-color:#87E493;" >
+<ion-view hide-nav-bar="true" title="login page" class="registerPageMain" >
   <ion-content padding="true">
     <h2 class="loginPageh2">Register</h2>
     <div>
-      <img src="../img/fruits_veggies.png" style="display: block; width: 100%; height: auto; margin-left: auto; margin-right: auto;">
+      <img src="../img/fruits_veggies.png" class="registerImg">
     </div>
     <div class="spacer loginSpacer" ></div>
-    <form class="list">
+    <form class="list registerPageForm">
       <label class="item item-input">
         <input type="email" placeholder="Email-id" ng-model="registerInfo.email">
       </label>
       <label class="item item-input">
         <input type="password" placeholder="Password" ng-model="registerInfo.password">
       </label>
-    <button class="button button-light button-block icon ion-android-contacts" ng-click= "register()">Sign Up</button>
+    <button class="button button-light button-block icon ion-android-contacts loginButton" ng-click= "register()">Sign Up</button>
     </form>
     <h5 class="loginh5">--- OR ---</h5>
     <a ng-click= "loginWithGoogle()" class="button button-light button-block loginButton">Login With Google</a>

@@ -3,6 +3,7 @@
 smartApp.controller('RecipeViewCtrl', function($scope, $window, $q, $ionicLoading, RecipeFactory) {
   $scope.NavTitle = 'Browse Recipes';
 
+  // The loading spinner
   $scope.show = function() {
     $ionicLoading.show({
       template: '<ion-spinner></ion-spinner>'
@@ -16,24 +17,20 @@ smartApp.controller('RecipeViewCtrl', function($scope, $window, $q, $ionicLoadin
   $scope.show($ionicLoading);
   RecipeFactory.get10Recipes()
     .then(recievedRecipes => {
-      console.log('reciecedRecipes', recievedRecipes);
       $scope.recipes = recievedRecipes.data.recipes;
-      $scope.hide($ionicLoading);
+      $scope.hide($ionicLoading); // Hide the loading spinner once the data is back from the API call
     })
     .catch(err => {
-      console.log('Error', err);
+      reject(err);
     });
-  // .finally( ($ionicLoading) => {
-  // })
 
   let recipeIdArray = [];
 
+  // Get the keyword typed by user and making an API call to to get recipes using searchedRecipes() function
+
   $scope.searchedRecipe = searchText => {
-    // $scope.show($ionicLoading);
-    // console.log(searchText);
     RecipeFactory.searchedRecipes(searchText)
       .then(searchedData => {
-        console.log('SearchedData', searchedData);
         searchedData.data.forEach(recipe => {
           recipeIdArray.push(recipe.id);
         });
@@ -43,7 +40,7 @@ smartApp.controller('RecipeViewCtrl', function($scope, $window, $q, $ionicLoadin
         });
       })
       .catch(err => {
-        console.log('err', err);
+        reject(err);
       });
   };
 });

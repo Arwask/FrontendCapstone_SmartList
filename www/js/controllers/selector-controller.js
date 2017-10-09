@@ -42,6 +42,7 @@ smartApp.controller('SelectorCtrl', function(
   let selectedItemArr = [];
 
   $scope.getSelectedItems = item => {
+    // When user selects an item, it checks to see if the item already exists in the selected array. if it was selected once, user is trying to unselect an item so pop it out of the list
     if (selectedItemArr.indexOf(item.name) == -1) selectedItemArr.push(item.name);
     else {
       let index = selectedItemArr.indexOf(item.name);
@@ -58,21 +59,29 @@ smartApp.controller('SelectorCtrl', function(
       });
       alertPopup.then(function(res) {});
     } else {
-      let arr = selectedItemArr.map((item, i) => {
-        //<----takes all the selected items on the list
-        let tempObj = {
-          item_name: item,
-          list_id: $scope.selectedList.list_id
-        };
-        fbDataFactory.addItemToFB(tempObj).then(dataItem => {
-          let url = $window.location.href.split('/');
-          url.pop();
-          url.pop();
-          url = url.join('/');
-          $window.location.href = `${url}shopping-list/${$scope.selectedList.list_id}`;
-          $window.location.reload();
+      if (selectedItemArr.length > 0) {
+        let arr = selectedItemArr.map((item, i) => {
+          //<----takes all the selected items on the list
+          let tempObj = {
+            item_name: item,
+            list_id: $scope.selectedList.list_id
+          };
+          fbDataFactory.addItemToFB(tempObj).then(dataItem => {
+            let url = $window.location.href.split('/');
+            url.pop();
+            url.pop();
+            url = url.join('/');
+            $window.location.href = `${url}shopping-list/${$scope.selectedList.list_id}`;
+            $window.location.reload();
+          });
         });
-      });
+      } else {
+        var alertPopup = $ionicPopup.alert({
+          title: 'You have not selected any items',
+          template: 'Please select items you would like to add to the list'
+        });
+        alertPopup.then(function(res) {});
+      }
     }
   };
 

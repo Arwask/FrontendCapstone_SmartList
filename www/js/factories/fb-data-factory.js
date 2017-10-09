@@ -1,6 +1,7 @@
 'use strict';
 
 smartApp.factory('fbDataFactory', function($q, $http, FirebaseUrl, UserFactory) {
+  // adds recipes to firebase when passed a recipe object containing current user's ID
   let addRecipeToFirebase = recipeObj => {
     return $q((resolve, reject) => {
       $http
@@ -14,6 +15,7 @@ smartApp.factory('fbDataFactory', function($q, $http, FirebaseUrl, UserFactory) 
     });
   };
 
+  //Gets all recipes by CurrentUser
   let getUserRecipes = currentUser => {
     return $q((resolve, reject) => {
       $http
@@ -22,8 +24,6 @@ smartApp.factory('fbDataFactory', function($q, $http, FirebaseUrl, UserFactory) 
           for (let key in response.data) {
             response.data[key].fbKey = key;
           }
-
-          // console.log("response", response.data);
           resolve(response);
         })
         .catch(err => {
@@ -39,22 +39,20 @@ smartApp.factory('fbDataFactory', function($q, $http, FirebaseUrl, UserFactory) 
         .then(user => {
           let currentUser = UserFactory.getUser();
           getUserRecipes(currentUser).then(userRecipes => {
-            // console.log("userRecipes check!", userRecipes.data);
             for (let key in userRecipes.data) {
               if (userRecipes.data[key].recipe_id == currentRecipeId) {
-                // console.log("key", key);
                 resolve(key);
-                // return key;
               }
             }
           });
         })
         .catch(err => {
-          console.log('err', err);
+          reject(err);
         });
     });
   };
 
+  //gets the firebase key of the recipe to delete
   let keyOfRecipeToDelete;
   let deleteRecipeFromFB = currentRecipeId => {
     return $q((resolve, reject) => {
@@ -63,13 +61,11 @@ smartApp.factory('fbDataFactory', function($q, $http, FirebaseUrl, UserFactory) 
           return $http.delete(`${FirebaseUrl}recipes/${keyOfRecipeToDelete}.json`);
         })
         .then(response => {
-          // console.log("response????", response);
           resolve(response.data);
         })
         .catch(err => {
           reject(err);
         });
-      // console.log("keyOfRecipeToDelete",keyOfRecipeToDelete );
     });
   };
 
@@ -78,9 +74,7 @@ smartApp.factory('fbDataFactory', function($q, $http, FirebaseUrl, UserFactory) 
     return $q((resolve, reject) => {
       UserFactory.isAuthenticated().then(user => {
         let currentUser = UserFactory.getUser();
-        // console.log("currentUser", currentUser);
         getLists(currentUser).then(allLists => {
-          // console.log("allLists", allLists);
           resolve(allLists);
         });
       });
@@ -90,10 +84,8 @@ smartApp.factory('fbDataFactory', function($q, $http, FirebaseUrl, UserFactory) 
   // get a user's all lists
   let getLists = currentUser => {
     return $q((resolve, reject) => {
-      // console.log("currentUser", `${FirebaseUrl}list.json?orderBy="uid"&equalTo="${currentUser}"`);
       $http.get(`${FirebaseUrl}list.json?orderBy="uid"&equalTo="${currentUser}"`).then(response => {
         for (let key in response.data) response.data[key].list_id = key;
-        // console.log("listData", response.data);
         resolve(response);
       });
     });
@@ -155,11 +147,9 @@ smartApp.factory('fbDataFactory', function($q, $http, FirebaseUrl, UserFactory) 
       $http
         .delete(`${FirebaseUrl}list/${listId}.json`)
         .then(response => {
-          // console.log("deleted???", response);
           deleteAllItemsOfAList(listId) //deletes all item with this list_id
             .then(someData => {
-              // console.log("someData", someData);
-              // resolve(someData);
+              resolve('Deleted');
             });
         })
         .catch(err => {
@@ -168,6 +158,7 @@ smartApp.factory('fbDataFactory', function($q, $http, FirebaseUrl, UserFactory) 
     });
   };
 
+  // Deletes all items on the list that is being deleted
   let deleteAllItemsOfAList = listId => {
     return $q((resolve, reject) => {
       $http
@@ -175,31 +166,32 @@ smartApp.factory('fbDataFactory', function($q, $http, FirebaseUrl, UserFactory) 
         .then(response => {
           Object.keys(response.data).forEach(item => {
             deleteOneItemFromFB(item).then(uselessData => {
-              // console.log("uselessData", uselessData);
+              resolve('Deleted!');
             });
           });
         })
-        .catch(e => {
-          console.log('error', e);
+        .catch(err => {
+          reject(err);
         });
     });
   };
 
+  //Editing name of the list in firebase
   let EditListInFB = listObj => {
     return $q((resolve, reject) => {
       let listId = listObj.list_id;
       $http
         .put(`${FirebaseUrl}list/${listId}.json`, angular.toJson(listObj))
         .then(updatedList => {
-          // console.log("updatedList", updatedList.data);
           resolve(updatedList.data);
         })
         .catch(err => {
-          console.log('err', err);
+          reject(err);
         });
     });
   };
 
+  // Edit single item on the particular list in firebase
   let EditItemInFB = itemObj => {
     return $q((resolve, reject) => {
       let itemId = itemObj.item_id;
@@ -209,11 +201,12 @@ smartApp.factory('fbDataFactory', function($q, $http, FirebaseUrl, UserFactory) 
           resolve(updatedItem.data);
         })
         .catch(err => {
-          console.log('err', err);
+          reject(err);
         });
     });
   };
 
+  //Add new Item to Firebase
   let addNewItemToFB = itemObj => {
     return $q((resolve, reject) => {
       $http
@@ -227,6 +220,7 @@ smartApp.factory('fbDataFactory', function($q, $http, FirebaseUrl, UserFactory) 
     });
   };
 
+  //Get the name of the list using its ID
   let getListName = listId => {
     return $q((resolve, reject) => {
       $http
@@ -240,6 +234,7 @@ smartApp.factory('fbDataFactory', function($q, $http, FirebaseUrl, UserFactory) 
     });
   };
 
+  //Get the API credentials of the Recipe-API from Firebase to keep it secured(Spoonacular.com)
   let getRecipeCreds = () => {
     return $q((resolve, reject) => {
       $http

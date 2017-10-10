@@ -1,49 +1,46 @@
 'use strict';
 
-smartApp.controller('RecipeViewCtrl', function($scope, $window,$q,$ionicLoading, RecipeFactory) {
+smartApp.controller('RecipeViewCtrl', function($scope, $window, $q, $ionicLoading, RecipeFactory) {
+  $scope.NavTitle = 'Browse Recipes';
 
-    $scope.NavTitle = "Browse Recipes";
-    
-    $scope.show = function() {
+  // The loading spinner
+  $scope.show = function() {
     $ionicLoading.show({
-      template:'<ion-spinner></ion-spinner>'
+      template: '<ion-spinner></ion-spinner>'
     });
-    };
+  };
 
-     $scope.hide = function(){
-        $ionicLoading.hide();
-    };
+  $scope.hide = function() {
+    $ionicLoading.hide();
+  };
 
-    $scope.show($ionicLoading)
-    RecipeFactory.get10Recipes()
-    .then( (recievedRecipes) => {
-        $scope.recipes = recievedRecipes.data.recipes;
-        $scope.hide($ionicLoading);
+  $scope.show($ionicLoading);
+  RecipeFactory.get10Recipes()
+    .then(recievedRecipes => {
+      $scope.recipes = recievedRecipes.data.recipes;
+      $scope.hide($ionicLoading); // Hide the loading spinner once the data is back from the API call
     })
-    .catch( (err) => {
-        console.log("Error",err );
-    })
-    // .finally( ($ionicLoading) => {
-    // })
+    .catch(err => {
+      reject(err);
+    });
 
-    let recipeIdArray = [];
+  let recipeIdArray = [];
 
-    $scope.searchedRecipe = (searchText) => {
-        $scope.show($ionicLoading); 
-        RecipeFactory.searchedRecipes(searchText)
-        .then( (searchedData) => {
-            searchedData.data.forEach( (recipe) => {
-                recipeIdArray.push(recipe.id);
-            });
-            RecipeFactory.getRecipeById(recipeIdArray)  
-            .then( (Recipedata) => {
-                $scope.recipes = Recipedata;
-                $scope.hide($ionicLoading);
-            });
-        })
-        .catch( (err) => {
-            console.log("err",err );
+  // Get the keyword typed by user and making an API call to to get recipes using searchedRecipes() function
+
+  $scope.searchedRecipe = searchText => {
+    RecipeFactory.searchedRecipes(searchText)
+      .then(searchedData => {
+        searchedData.data.forEach(recipe => {
+          recipeIdArray.push(recipe.id);
         });
-    };
-
+        RecipeFactory.getRecipeById(recipeIdArray).then(Recipedata => {
+          $scope.recipes = Recipedata;
+          $scope.hide($ionicLoading);
+        });
+      })
+      .catch(err => {
+        reject(err);
+      });
+  };
 });

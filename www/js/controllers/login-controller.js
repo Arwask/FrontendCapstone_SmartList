@@ -1,23 +1,19 @@
 'use strict';
 
 smartApp.controller('LoginCtrl', function($scope, UserFactory, $window) {
-    
-    $scope.loginInfo = {
-        email: "",
-        password: ""
-    };
+  //initializing a blank loginInfo Object to watch for user input
+  $scope.loginInfo = {
+    email: '',
+    password: ''
+  };
 
-
-    $scope.login = () => {
-    UserFactory.loginUser($scope.loginInfo)
-    .then( (data) => {
-        let url = ($window.location.href).split("/");
-                  url.pop();
-                  url = url.join('/');
-                  // console.log("$window.location.href", $window.location.href);
-                 console.log("url", url);
-                 $window.location.href = `${url}main-options`;
-        // $window.location.href = "recipes/view";
-        });
-    };    
+  $scope.login = () => {
+    UserFactory.loginUser($scope.loginInfo).then(data => {
+      // because the link changes on ionic serve --lab serving according to the open platforms at given point, functionality to navigate according to the given path.
+      let url = $window.location.href.split('/');
+      url.pop();
+      url = url.join('/');
+      $window.location.href = `${url}main-options`;
+    });
+  };
 });

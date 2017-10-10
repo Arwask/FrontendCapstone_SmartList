@@ -3,31 +3,31 @@
 <ion-view title="Recipe" cache-view="false">
   <ion-content padding="true" class="has-header">
     <div class="button-bar">
- 
+
     </div>
     <div class="list card singleRecipeMainDiv">
       <ion-item class="optionsOnSingleRecipeView">
-      <button class="button button-clear" ng-click="deleteRecipe()" ui-sref="recipeBook"><i class="icon ion-trash-b" class="redFont"></i></button>
-      <button class="button button-clear" ui-sref="selector({recipeId : recipes.id})"><i class="icon ion-ios-list" class="purpleFont"></i></button>
-      <button class="button button-clear" ui-sref="recipeBook"><i class="icon ion-android-cancel" class="redFont"></i></button>
-        
+        <button class="button button-clear" ng-click="deleteRecipe()" ui-sref="recipeBook"><i class="icon ion-trash-b redFont"></i></button>
+        <button class="button button-clear" ui-sref="selector({recipeId : recipes.id})"><i class="icon ion-ios-list purpleFont"></i></button>
+        <button class="button button-clear" ui-sref="recipeBook"><i class="icon ion-android-cancel redFont"></i></button>
+
       </ion-item>
-        <h2>{{recipes.title}}</h2>
+      <h2>{{recipes.title}}</h2>
       <div>
         <img src="{{recipes.image}}" class="fullWidth">
       </div>
       <div>
-      <h2>Ingredients:</h2>
+        <h2>Ingredients:</h2>
         <ul ng-repeat="item in recipes.extendedIngredients">
           <li>{{item.name}}</li>
         </ul>
       </div>
       <div>
-      <h2>Method:</h2>
+        <h2>Method:</h2>
         <ul ng-repeat="each in recipes.analyzedInstructions[0].steps">
           <li><b>Step:{{each.number}}</b><br>{{each.step}}</li>
         </ul>
       </div>
     </div>
-  </ion-content>  
+  </ion-content>
 </ion-view>

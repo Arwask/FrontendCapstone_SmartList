@@ -1,5 +1,5 @@
 <ion-view title="Page" hide-nav-bar="true">
- 
+
   <ion-content padding="false" class="manual-ios-statusbar-padding" scroll="false">
     <ion-slides disable-side-menu-drag="" options="{'loop': false}" slider="slider1" delegate-handle="slider1" class="sliderSlides">
       <ion-slide-page class="padding mainSlider1">
@@ -27,7 +27,8 @@
               </div>
               <h1 class="sliderPageh1">Browse Recipes</h1>
               <div class="show-list-numbers-and-dots sliderTextCenter">
-                <p>Explore our wide range of recipes and save them or convert to a shopping list. Just click list option on the recipe.</p>
+                <p>Explore our wide range of recipes and save them or convert to a shopping list. Just click list option on
+                  the recipe.</p>
               </div>
             </div>
           </div>
@@ -63,23 +64,23 @@
           </div>
         </div>
       </ion-slide-page>
-    <ion-slide-page class="padding mainSlider5">
+      <ion-slide-page class="padding mainSlider5">
         <h1 class="sliderPageh1">Sign In</h1>
-    <div>
-      <img src="https://s3.amazonaws.com/ionic-io-static/FfW6ef5PSFeXKnZBYlTW_fruits_veggies.png" class="signinImgIcon">
-    </div>
-    <!-- <div class="spacer spacerDiv"></div> -->
-    <form class="list">
-      <label class="item item-input">
+        <div>
+          <img src="https://s3.amazonaws.com/ionic-io-static/FfW6ef5PSFeXKnZBYlTW_fruits_veggies.png" class="signinImgIcon">
+        </div>
+        <!-- <div class="spacer spacerDiv"></div> -->
+        <form class="list">
+          <label class="item item-input">
         <input type="email" placeholder="Email-id" ng-model="loginInfo.email">
       </label>
-      <label class="item item-input">
+          <label class="item item-input">
         <input type="password" placeholder="Password" ng-model="loginInfo.password">
       </label>
-    </form>
-    <button class="button button-light button-block icon ion-android-contacts" ng-click="login()">Sign In</button>
-    <h5 class="sliderPageh5">--- OR ---</h5>
-    <a ui-sref="register" class="signinButtonText button button-light button-block">Register New</a>
+        </form>
+        <button class="button button-light button-block icon ion-android-contacts" ng-click="login()">Sign In</button>
+        <h5 class="sliderPageh5">--- OR ---</h5>
+        <a ui-sref="register" class="signinButtonText button button-light button-block">Register New</a>
       </ion-slide-page>
     </ion-slides>
   </ion-content>

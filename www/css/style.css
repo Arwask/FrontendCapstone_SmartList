@@ -1,289 +1,300 @@
 /*********Main*******/
 
 .redFont {
-    color: red;
+  color: red;
 }
 
 .purpleFont {
-    color: purple;
+  color: purple;
 }
 
 .fullWidth {
-    width: 100%;
+  width: 100%;
 }
 
-body, button, option, input, select {
-    font-family: 'Montaga', serif;
-    font-size: 1.1em;
+body,
+button,
+option,
+input,
+select {
+  font-family: 'Montaga', serif;
+  font-size: 1.1em;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Boogaloo', cursive;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Boogaloo', cursive;
 }
 
 #imgIcon {
-    width: 10%;
-    height: 80%;
+  width: 10%;
+  height: 80%;
 }
 
 /***Single Recipe Card***/
 
 .singleRecipeCard {
-    margin: 5% 5%;
-    width: 40%;
-    float: left;
-    max-height: 250px;
+  margin: 5% 5%;
+  width: 40%;
+  float: left;
+  max-height: 250px;
 }
 
 .singleRecipeDiv {
-    margin: 0px;
-    line-height: 0px;
-    text-align: center;
+  margin: 0px;
+  line-height: 0px;
+  text-align: center;
 }
 
 .singleRecipeDiv img {
-    width: 100%;
+  width: 100%;
 }
 
 .singleRecipeDiv h6 {
-    height:40px;
-    line-height:20px;
-    overflow:hidden;
+  height: 40px;
+  line-height: 20px;
+  overflow: hidden;
 }
 
 .mainOptionDiv {
-    max-width: 50%;
-    border: 0.5px solid lightgray;
-    box-shadow: 5px 5px 3px slategray;
-    /*border-radius: 10px;*/
-    margin: 10px auto;
+  max-width: 50%;
+  border: 0.5px solid lightgray;
+  box-shadow: 5px 5px 3px slategray;
+  /*border-radius: 10px;*/
+  margin: 10px auto;
 }
 
 .mainOptionDiv:active {
-  background-color: #EDF1D1;
+  background-color: #edf1d1;
   box-shadow: 0 slategray;
   transform: translateY(4px);
 }
 
 .mainOptionSubDiv {
-    padding: 5px;
-    text-align: center;
-    height: 150px;
+  padding: 5px;
+  text-align: center;
+  height: 150px;
 }
 
 .mainOptionSubDiv img {
-    width: 100%;
-    height: 120px;
+  width: 100%;
+  height: 120px;
 }
 
 .pFrame {
-    border: none;
-    padding: 0;
-    text-align: center;
+  border: none;
+  padding: 0;
+  text-align: center;
 }
 
 /***Single Recipe View***/
 
 .optionsOnSingleRecipeView {
-    padding: 0 50px;
+  padding: 0 50px;
 }
 
 .singleRecipeMainDiv {
-    padding: 5px;
-    border: none;
+  padding: 5px;
+  border: none;
 }
 
 .singleRecipeMainDiv div {
-    padding-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 #listSelect {
-    width: 80%;
+  width: 80%;
 }
 
 .buttonBar button {
-    margin: 0 30px;
-    color: #364FCD;
+  margin: 0 30px;
+  color: #364fcd;
 }
 
 .buttonBar button i {
-    color: #387ef5;
+  color: #387ef5;
 }
 
-.sideMenuContent ion-list ion-item{
-    color: #387ef5;
+.sideMenuContent ion-list ion-item {
+  color: #387ef5;
 }
 
 .navTitleCenter {
-    margin-left: 100px;
+  margin-left: 100px;
 }
 
 .statusbar {
-    background-color: #000;
+  background-color: #000;
 }
 
 /******* INFO_SLIDERS*********/
 
 .sliderSlides {
-    width:100%;
-    height:100%;
+  width: 100%;
+  height: 100%;
 }
 
 .sliderDiv1 {
-    display:table;
-    width:100%;
-    height:100%;
+  display: table;
+  width: 100%;
+  height: 100%;
 }
 
 .mainSlider1 {
-    background-color:#7E7ED4;
+  background-color: #7e7ed4;
 }
 
 .mainSlider2 {
-    background-color:#8AE996;
+  background-color: #8ae996;
 }
 
 .mainSlider3 {
-    background-color:#ECB35E;
+  background-color: #ecb35e;
 }
 
 .mainSlider4 {
-    background-color:#E6E644;
+  background-color: #e6e644;
 }
 
 .mainSlider5 {
-    background-color:#EB626F;
+  background-color: #eb626f;
 }
 
 .sliderRow {
-    display:table-row;
+  display: table-row;
 }
 
 .sliderAlignment {
-    display:table-cell;
-    vertical-align:middle;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .sliderAdjust {
-    margin: 0px;
-    text-align: center;
+  margin: 0px;
+  text-align: center;
 }
 
 .sliderPageh1 {
-    color:#000;
-    text-align:center;
+  color: #000;
+  text-align: center;
 }
 
 .sliderTextCenter {
-    text-align:center;
+  text-align: center;
 }
 
 .sliderTextCenter p {
-    color:#000;
+  color: #000;
 }
 
 .spacerDiv {
-    width: 300px;
-    height: 18px;
+  width: 300px;
+  height: 18px;
+}
+
+.swiper-slide img {
+  width: 80%;
+  height: 80%;
 }
 
 .signinImgIcon {
-    display: block; 
-    width: 100%; 
-    height: auto; 
-    margin-left: auto; 
-    margin-right: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .button.button-light {
-    color : black;
+  color: black;
 }
 
 .sliderPageh5 {
-   color:#F6FAF8;
-   font-weight:lighter;
-   text-align:center;
+  color: #f6faf8;
+  font-weight: lighter;
+  text-align: center;
 }
 
 /******Login Page*******/
 
 .loginPageMain {
-    background-color:#87E493;
+  background-color: #87e493;
 }
 
 .loginPageh2 {
-    color:#000000;
-    text-align:center;
+  color: #000000;
+  text-align: center;
 }
 
 .loginImg {
-    display: block; 
-    width: 100%; 
-    height: auto; 
-    margin-left: auto; 
-    margin-right: auto;
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .loginSpacer {
-    width: 300px; 
-    height: 18px;
+  width: 300px;
+  height: 18px;
 }
 
 .loginButton {
-    color:#2EEF88;
+  color: #2eef88;
 }
 
 .loginh5 {
-    color:#F6FAF8;
-    font-weight:lighter;
-    text-align:center;
+  color: #f6faf8;
+  font-weight: lighter;
+  text-align: center;
 }
 
 /*********REGISTER*******/
 
 .registerImg {
-    display: block; 
-    width: 100%; 
-    height: auto; 
-    margin-left: auto; 
-    margin-right: auto;
+  display: block;
+  width: 80%;
+  height: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .registerPageMain {
-    background-color:#87E493;
+  background-color: #87e493;
 }
 
 .registerPageForm {
-    padding-bottom: 0;
-    margin-bottom: 10px;
+  padding-bottom: 0;
+  margin-bottom: 10px;
 }
-
 
 /******* selctor-list *******/
 
 .selectorlistPopup {
-    color: red; 
-    margin-top: -10px; 
-    font-size: 2em;
+  color: red;
+  margin-top: -10px;
+  font-size: 2em;
 }
 
 /******** shopping-list ***********/
 
 .backgroundHeaderBar {
-    background-color: #D5F1EE;
+  background-color: #d5f1ee;
 }
 
 .spacerDiv {
-    width: 300px; 
-    height: 38px;
+  width: 300px;
+  height: 38px;
 }
 
 .addNewPopup {
-    position: fixed; 
-    right: 0; 
-    margin: 0;
+  position: fixed;
+  right: 0;
+  margin: 0;
 }
 
 .showDeleteBtn {
-    margin: 0;
+  margin: 0;
 }

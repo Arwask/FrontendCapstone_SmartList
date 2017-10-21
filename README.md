@@ -7,6 +7,7 @@
 - [Technologies used](#technologies-used)
 - [How to install?](#how-to-install)
 - [How to get started?](#how-to-get-started)
+- [Link to deployed App](#see-the-app-live)
 
 ## <p style="color: green;">Introduction</p>
 This app's primary use is to let users make shopping lists out of the recipes they choose but is not limited to that. On opening the app for first time, it walks you through the app using slider pages to explain how to use it.  

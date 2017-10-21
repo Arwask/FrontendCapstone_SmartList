@@ -44,4 +44,8 @@ Shopping lists and saved recipes can be accessed by the given tabs on main page 
 
 [Arwa Kuterwadliwala](https://github.com/Arwask)
 
+## See the App Live
+[SmartList](https://smart-list-d50e4.firebaseapp.com/)
+> NOTE: Its a mobile app and its best if viewed on a phone.
+
 <p align="center">&copy; 2017 Arwask</p>
